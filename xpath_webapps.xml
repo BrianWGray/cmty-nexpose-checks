@@ -3,10 +3,12 @@
     <!-- Synology "DiskStation" Status: Developement -->
     <fingerprint>
         <get page="/webman/info.cgi"/>
-        <test regex="(major=\d+.minor=\d+.build=\d+).*synology">
+        <test xpath="//script//*" regex="major=(\d+)&amp;minor=(\d+)&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation"/>
             <param pos="1" name="version"/>
+            <param pos="2" name="version.version"/>
+            <param pos="3" name="version.version.version"/>
         </test>
     </fingerprint>
     
