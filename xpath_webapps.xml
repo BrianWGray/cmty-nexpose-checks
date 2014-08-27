@@ -1,6 +1,6 @@
 <fingerprints>
     
-    <!-- Synology DiskStation-->
+    <!-- Synology "DiskStation" Status: Developement -->
     <fingerprint>
         <get page="/webman/info.cgi"/>
         <test regex="(major=\d+.minor=\d+.build=\d+).*synology">
