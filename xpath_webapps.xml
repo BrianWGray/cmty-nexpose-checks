@@ -1,0 +1,13 @@
+<fingerprints>
+    
+    <!-- Synology DiskStation-->
+    <fingerprint>
+        <get page="/webman/info.cgi"/>
+        <test regex="(major=\d+.minor=\d+.build=\d+).*synology">
+            <param pos="0" name="vendor" value="Synology"/>
+            <param pos="0" name="product" value="DiskStation"/>
+            <param pos="1" name="version"/>
+        </test>
+    </fingerprint>
+    
+</fingerprints>
