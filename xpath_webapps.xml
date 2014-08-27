@@ -1,6 +1,6 @@
 <fingerprints>
     
-    <!-- Synology "DiskStation" Status: Developement -->
+    <!-- Synology "DiskStation" Status: Development -->
     <fingerprint>
         <get page="/webman/info.cgi"/>
         <test xpath="//script//*" regex="major=(\d+)&amp;minor=(\d+)&amp;build=(\d+).*synology">
