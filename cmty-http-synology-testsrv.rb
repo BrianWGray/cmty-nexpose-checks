@@ -1,6 +1,11 @@
+#!/usr/bin/env ruby
+# Brian W. Gray
+# 08.28.2014
+
+# Creates test http server that emulated a vulnerable Synology DiskStation banner to test detection of CVE-2013-6955
+
 require 'socket'
 require 'cgi'
-
 
 
 server = TCPServer.new 5000
