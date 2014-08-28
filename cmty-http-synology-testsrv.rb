@@ -12,11 +12,8 @@ response = "<html> <script type='text/javascript'>parent.location = '#major=4&mi
 loop do
     
     client = server.accept
-    
     request = client.gets
-    
     STDERR.puts request
-    
     time = CGI.rfc1123_date(Time.now)
     
     headers = ["http/1.1 200 ok",
