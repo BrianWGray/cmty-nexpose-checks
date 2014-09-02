@@ -25,7 +25,7 @@ loop do
     "#{time}",
     "Server: Apache/2.2.23 (Unix) mod_ssl/2.2.23 OpenSSL/1.0.1e-fips",
     "Vary: Accept-Encoding",
-    "content-type: text/html; charset=\"UTF-8\"",
+    "content-type: text/html;", #"charset=\"UTF-8\"",
     "content-length: #{response.bytesize}",
     "Connection: close\r\n\r\n"].join("\r\n")
     client.puts headers

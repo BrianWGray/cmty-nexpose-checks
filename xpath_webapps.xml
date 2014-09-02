@@ -8,7 +8,7 @@
     <!-- Synology "DiskStation" 4.3 Status: Development -->
     <fingerprint>
         <get page="/webman/info.cgi"/>
-        <test xpath="//script//*" regex="major=4&amp;minor=3&amp;build=(\d+).*synology">
+        <test xpath="//script//text()" regex="major=4&amp;minor=3&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation 4.3"/>
             <param pos="1" name="version"/>
@@ -18,7 +18,7 @@
     <!-- Synology "DiskStation" 4.2 Status: Development -->
     <fingerprint>
         <get page="/webman/info.cgi"/>
-        <test xpath="//script//*" regex="major=4&amp;minor=2&amp;build=(\d+).*synology">
+        <test xpath="//script//text()" regex="major=4&amp;minor=2&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation 4.2"/>
             <param pos="1" name="version"/>
@@ -28,7 +28,7 @@
     <!-- Synology "DiskStation" 4.1 Status: Development -->
     <fingerprint>
         <get page="/webman/info.cgi"/>
-        <test xpath="//script//*" regex="major=4&amp;minor=1&amp;build=(\d+).*synology">
+        <test xpath="//script//text()" regex="major=4&amp;minor=1&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation 4.1"/>
             <param pos="1" name="version"/>
@@ -38,7 +38,7 @@
     <!-- Synology "DiskStation" 4.0 Status: Development -->
     <fingerprint>
         <get page="/webman/info.cgi"/>
-        <test xpath="//script//*" regex="major=4&amp;minor=0&amp;build=(\d+).*synology">
+        <test xpath="//script//text()" regex="major=4&amp;minor=0&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation 4.0"/>
             <param pos="1" name="version"/>
