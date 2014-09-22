@@ -1,0 +1,14 @@
+<VulnerabilityCheck id="cmty-32764-backdoor-sercomm" scope="endpoint">
+   <NetworkService type="TCPCheck">
+   </NetworkService>
+   <TCPCheck>
+      <or>
+            <TCPRequestResponse>
+                <regex>^ScMM</regex>
+            </TCPRequestResponse>
+            <TCPRequestResponse>
+                <regex>^MMcS</regex>
+            </TCPRequestResponse>
+      </or>
+    </TCPCheck>
+</VulnerabilityCheck>
