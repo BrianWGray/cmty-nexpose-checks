@@ -1,6 +1,6 @@
 <fingerprints>
 
-<!-- See https://community.rapid7.com/thread/xxxxx -->
+<!-- See https://community.rapid7.com/thread/5332 -->
 <!-- Drupal "Drupal" version Status: Development -->
     <fingerprint>
         <get page="/"/>
