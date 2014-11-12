@@ -1,5 +1,16 @@
 <fingerprints>
 
+<!-- See https://community.rapid7.com/thread/xxxxx -->
+<!-- Drupal "Drupal" version Status: Development -->
+    <fingerprint>
+        <get page="/"/>
+        <test xpath="/descendant-or-self::node()" regex="X-Generator:.*Drupal\s(\d+).*\(http://drupal\.org\)">
+            <param pos="0" name="vendor" value="Drupal"/>
+            <param pos="0" name="product" value="Drupal"/>
+            <param pos="1" name="version"/>
+        </test>
+    </fingerprint>
+
 
 <!-- See https://community.rapid7.com/thread/5029 -->
     <!-- Synology "DiskStation" Status: Development -->
@@ -57,6 +68,5 @@
         </test>
     </fingerprint>
      -->
-    
-    
+
 </fingerprints>
