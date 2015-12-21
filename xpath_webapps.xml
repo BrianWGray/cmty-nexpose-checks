@@ -12,17 +12,6 @@
     </fingerprint>
 
 
-<!-- RHN Satellite server 5.6.0 Status: Development -->
-
-<fingerprint>
-    <get path="/rhn/Login.do"/>
-    <test xpath="//script//text()" regex=">Red Hat Satellite release <.*>5.6.0<">
-        <param pos="5" name="vendor" value="RedHat"/>
-        <param pos="6" name="product" value="Satellite"/>
-        <param pos="0" name="version"/>
-    </test>
-</fingerprint>
-
 
 <!-- See https://community.rapid7.com/thread/5332 -->
 <!-- Drupal "Drupal" version Status: Development -->
