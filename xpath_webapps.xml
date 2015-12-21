@@ -1,10 +1,34 @@
 <fingerprints>
 
+<!-- Joomla! "Joomla!" version Status: Development -->
+    <fingerprint>
+        <get path="/administrator/"/>
+        <get path="/"/>
+        <test xpath="//html/head/meta[@name='generator']/@content" regex="(Joomla\!).*(\d+\.\d+).*(Open Source Content Management)">
+            <param pos="0" name="vendor" value="Joomla!"/>
+            <param pos="0" name="product" value="Joomla!"/>
+            <param pos="1" name="version"/>
+        </test>
+    </fingerprint>
+
+
+<!-- RHN Satellite server 5.6.0 Status: Development -->
+
+<fingerprint>
+    <get path="/rhn/Login.do"/>
+    <test xpath="//script//text()" regex=">Red Hat Satellite release <.*>5.6.0<">
+        <param pos="5" name="vendor" value="RedHat"/>
+        <param pos="6" name="product" value="Satellite"/>
+        <param pos="0" name="version"/>
+    </test>
+</fingerprint>
+
+
 <!-- See https://community.rapid7.com/thread/5332 -->
 <!-- Drupal "Drupal" version Status: Development -->
     <fingerprint>
-        <get page="/"/>
-        <test xpath="/descendant-or-self::node()" regex="X-Generator:.*Drupal\s(\d+).*\(http://drupal\.org\)">
+        <get path="/"/>
+        <test xpath="//descendant-or-self::node()" regex="X-Generator:.*Drupal\s(\d+).*\(http://drupal\.org\)">
             <param pos="0" name="vendor" value="Drupal"/>
             <param pos="0" name="product" value="Drupal"/>
             <param pos="1" name="version"/>
@@ -18,7 +42,7 @@
     
     <!-- Synology "DiskStation" 4.3 Status: Development -->
     <fingerprint>
-        <get page="/webman/info.cgi"/>
+        <get path="/webman/info.cgi"/>
         <test xpath="//script//text()" regex="major=4&amp;minor=3&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation 4.3"/>
@@ -28,7 +52,7 @@
     
     <!-- Synology "DiskStation" 4.2 Status: Development -->
     <fingerprint>
-        <get page="/webman/info.cgi"/>
+        <get path="/webman/info.cgi"/>
         <test xpath="//script//text()" regex="major=4&amp;minor=2&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation 4.2"/>
@@ -38,7 +62,7 @@
     
     <!-- Synology "DiskStation" 4.1 Status: Development -->
     <fingerprint>
-        <get page="/webman/info.cgi"/>
+        <get path="/webman/info.cgi"/>
         <test xpath="//script//text()" regex="major=4&amp;minor=1&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation 4.1"/>
@@ -48,7 +72,7 @@
     
     <!-- Synology "DiskStation" 4.0 Status: Development -->
     <fingerprint>
-        <get page="/webman/info.cgi"/>
+        <get path="/webman/info.cgi"/>
         <test xpath="//script//text()" regex="major=4&amp;minor=0&amp;build=(\d+).*synology">
             <param pos="0" name="vendor" value="Synology"/>
             <param pos="0" name="product" value="DiskStation 4.0"/>
