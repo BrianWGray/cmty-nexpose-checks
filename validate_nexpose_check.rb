@@ -40,7 +40,7 @@ def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 	@directoryPath = directoryPath
 	Dir.glob("#{@directoryPath}*.vck").each do|f| 
 
-		begin	
+		begin
 
 			@vckXsdPath,@xmlXsdPath = vckXsdPath,xmlXsdPath
 			## record check names
@@ -56,7 +56,7 @@ def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 					end
 				end
 			else 
-				puts "A file is missing and the check may not be validated"
+				puts "The #{@checkVck} file is missing and the check may not be validated"
 			end
 			
 			# Validate descriptor xml
@@ -70,7 +70,7 @@ def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 					end
 				end
 			else
-				puts "A file is missing and the check description may not be validated"
+				puts "The #{@checkXml} file is missing and the check description may not be validated"
 			end
 
 		rescue => error
