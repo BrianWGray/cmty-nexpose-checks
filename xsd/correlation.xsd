@@ -1,0 +1,23 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="correlated-vulns" type="Correlation"/>
+
+  <xsd:complexType name="Correlation">
+
+    <xsd:sequence>
+      <xsd:element name="vuln" minOccurs="1" maxOccurs="unbounded">
+        <xsd:complexType>
+
+          <xsd:sequence>
+            <xsd:element name="superset" minOccurs="1" maxOccurs="unbounded">
+              <xsd:complexType>
+                <xsd:attribute name="id" use="required" type="xsd:string"/>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="id" use="required" type="xsd:string"/>
+
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

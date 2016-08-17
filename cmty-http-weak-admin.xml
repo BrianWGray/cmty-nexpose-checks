@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-http-weak-admin" published="2015-11-06" added="2015-11-06" modified="2015-11-06" version="1.0">
+  <name>Weak Admin password for HTTP</name>
+  <severity>10</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:C/I:C/A:C)</cvss>
+  <Tags>
+    <tag>HTTP</tag>
+  </Tags>
+  <AlternateIds>
+  </AlternateIds>
+  <Description>
+    <p>The admin  account uses a known weak password.  This would allow
+      anyone to log into the machine via HTTP.</p>
+  </Description>
+  <Solutions>
+    <Solution id="cmty-http-weak-admin" time="15m">
+      <summary>Fix known admin password</summary>
+      <workaround>
+        <p>
+          The current password should be evaluated for change.
+		password list used during this check
+		user: admin
+
+		Passwords:
+		admin+admin
+        </p>
+      </workaround>
+    </Solution>
+  </Solutions>
+</Vulnerability>

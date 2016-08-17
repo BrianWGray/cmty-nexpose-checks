@@ -1,0 +1,54 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:simpleType name="System_deviceClass">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="BBS"/>
+      <xsd:enumeration value="Bridge"/>
+      <xsd:enumeration value="Broadband router"/>
+      <xsd:enumeration value="Console server"/>
+      <xsd:enumeration value="CSU/DSU"/>
+      <xsd:enumeration value="Domain controller"/>
+      <xsd:enumeration value="DSLAM"/>
+      <xsd:enumeration value="Encryption accelerator"/>
+      <xsd:enumeration value="Fax server"/>
+      <xsd:enumeration value="File server"/>
+      <xsd:enumeration value="Firewall"/>
+      <xsd:enumeration value="Game console"/>
+      <xsd:enumeration value="General"/>
+      <xsd:enumeration value="Hub"/>
+      <xsd:enumeration value="KVM"/>
+      <xsd:enumeration value="Lights Out Management"/>
+      <xsd:enumeration value="Load balancer"/>
+      <xsd:enumeration value="Mainframe"/>
+      <xsd:enumeration value="Monitoring"/>
+      <xsd:enumeration value="Multifunction Device"/>
+      <xsd:enumeration value="NAC"/>
+      <xsd:enumeration value="PBX"/>
+      <xsd:enumeration value="PDA"/>
+      <xsd:enumeration value="Point of sale"/>
+      <xsd:enumeration value="Power device"/>
+      <xsd:enumeration value="Printer"/>
+      <xsd:enumeration value="Print server"/>
+      <xsd:enumeration value="Remote access server"/>
+      <xsd:enumeration value="Router"/>
+      <xsd:enumeration value="Server"/>
+      <xsd:enumeration value="Specialized"/>
+      <xsd:enumeration value="Storage"/>
+      <xsd:enumeration value="Switch"/>
+      <xsd:enumeration value="Tape library"/>
+      <xsd:enumeration value="Telecom"/>
+      <xsd:enumeration value="Terminal server"/>
+      <xsd:enumeration value="UPS"/>
+      <xsd:enumeration value="Virtualization host"/>
+      <xsd:enumeration value="VoIP"/>
+      <xsd:enumeration value="VPN"/>
+      <xsd:enumeration value="WAP"/>
+      <xsd:enumeration value="Web cam"/>
+      <xsd:enumeration value="Web proxy"/>
+      <xsd:enumeration value="Web server"/>
+      <xsd:enumeration value="Workstation"/>
+      <xsd:enumeration value="X terminal"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>

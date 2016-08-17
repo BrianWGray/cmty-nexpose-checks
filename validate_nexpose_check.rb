@@ -31,7 +31,7 @@ checkXml = "#{checkName}.xml"
 
 ## provide path locations to rapid7 schema files
 ## default location to find the schema files - console:/opt/rapid7/nexpose/plugins/xsd/
-xsdPath = "../checkscheme/xsd/"
+xsdPath = "xsd/"
 vckXsdPath = "#{xsdPath}vulnerability-check.xsd"
 xmlXsdPath = "#{xsdPath}vulnerability-descriptor.xsd"
 

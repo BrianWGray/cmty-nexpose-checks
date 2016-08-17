@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Vulnerability id="cmty-ftp-list-returned" published="2016-07-08" added="2016-07-08" modified="2016-07-08" version="1.0">
+  <name>FTP LIST Command Returns Data</name>
+  <severity>1</severity>
+  <pci severity="1"/>
+  <Tags>
+     <tag>FTP</tag>
+     <tag>Directory Browsing</tag>
+  </Tags>
+  <cvss>(AV:N/AC:L/Au:S/C:P/I:N/A:N)</cvss>
+  <AlternateIds>
+    <id name="URL">https://en.wikipedia.org/wiki/List_of_FTP_commands</id>  
+  </AlternateIds>
+  <Description>
+     <p>The FTP service is accessible and allows for contents to be listed.
+     </p>
+  </Description>
+  <Solutions>
+    <Solution id="cmty-ftp-list-returned" time="5m">
+      <summary>Configure a password to prevent un-authenticated access to documents stored on the system. These documents may be sensitive in nature.</summary>
+      <workaround>
+          <p>No work arounds are available at this time.</p>
+    </workaround>
+    </Solution>
+  </Solutions>
+</Vulnerability>

@@ -1,0 +1,7 @@
+<VulnerabilityCheck id="cmty-http-weak-basic-auth" scope="endpoint">
+   <NetworkService type="HTTP"/>
+   <DefaultAccount>
+      <uid>admin</uid>
+      <password>admin+admin</password>
+   </DefaultAccount>
+</VulnerabilityCheck>

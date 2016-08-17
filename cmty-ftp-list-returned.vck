@@ -1,0 +1,11 @@
+<VulnerabilityCheck id="cmty-ftp-list-returned" version="1.0" scope="endpoint">
+   <NetworkService type="FTP"/>
+   <FTPCheck login="1">   
+      <FTPRequestResponse>
+        <FTPRequest>ls</FTPRequest>
+        <FTPResponse>
+                <regex>.*</regex>
+        </FTPResponse>
+      </FTPRequestResponse>
+   </FTPCheck>
+</VulnerabilityCheck>

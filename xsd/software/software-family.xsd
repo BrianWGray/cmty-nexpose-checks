@@ -1,0 +1,25 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:simpleType name="Software_family">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Acrobat"/>
+      <xsd:enumeration value="Exchange Server"/>
+      <xsd:enumeration value="Flash"/>
+      <xsd:enumeration value="Internet Explorer"/>
+      <xsd:enumeration value="Internet Information Services"/>
+      <xsd:enumeration value="iTunes"/>
+      <xsd:enumeration value="MDAC"/>
+      <xsd:enumeration value="Mozilla"/>
+      <xsd:enumeration value="MSXML"/>
+      <xsd:enumeration value=".NET Framework"/>
+      <xsd:enumeration value="Office"/>
+      <xsd:enumeration value="OpenView"/>
+      <xsd:enumeration value="Outlook"/>
+      <xsd:enumeration value="QuickTime"/>
+      <xsd:enumeration value="SQL Server"/>
+      <xsd:enumeration value="Windows Media Player"/>
+      <xsd:enumeration value="Wordpress"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>

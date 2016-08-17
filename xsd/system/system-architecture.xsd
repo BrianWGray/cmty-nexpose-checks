@@ -1,0 +1,24 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:simpleType name="System_architecture">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="390"/>
+      <xsd:enumeration value="680xx"/>
+      <xsd:enumeration value="880xx"/>
+      <xsd:enumeration value="Alpha"/>
+      <xsd:enumeration value="ia64"/>
+      <xsd:enumeration value="iSeries"/>
+      <xsd:enumeration value="MIPS"/>
+      <xsd:enumeration value="MPC"/>
+      <xsd:enumeration value="PA"/>
+      <xsd:enumeration value="PowerPC"/>
+      <xsd:enumeration value="pSeries"/>
+      <xsd:enumeration value="Risc"/>
+      <xsd:enumeration value="s390x"/>
+      <xsd:enumeration value="Sparc"/>
+      <xsd:enumeration value="x86"/>
+      <xsd:enumeration value="x86_64"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>

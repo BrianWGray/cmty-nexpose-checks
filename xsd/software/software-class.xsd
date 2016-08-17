@@ -1,0 +1,25 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xsd:simpleType name="Software_class">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Backup"/>
+      <xsd:enumeration value="Blog"/>
+      <xsd:enumeration value="Database Client"/>
+      <xsd:enumeration value="Database Server"/>
+      <xsd:enumeration value="General"/>
+      <xsd:enumeration value="IM Client"/>
+      <xsd:enumeration value="IM Server"/>
+      <xsd:enumeration value="Internet Client"/>
+      <xsd:enumeration value="Internet Server"/>
+      <xsd:enumeration value="Mail Client"/>
+      <xsd:enumeration value="Mail Server"/>
+      <xsd:enumeration value="Media Client"/>
+      <xsd:enumeration value="Media Server"/>
+      <xsd:enumeration value="Peer-Peer"/>
+      <xsd:enumeration value="Productivity"/>
+      <xsd:enumeration value="Security"/>
+      <xsd:enumeration value="Utility"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>
