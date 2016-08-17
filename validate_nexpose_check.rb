@@ -8,8 +8,13 @@
 ## == The script performs the following:
 # 1. load vck schema and descriptor xml schema
 # 2. use the vulnerability checkName to run schema validation of the check
-# 3. 
-# TODO provide an option for performing mass validation of all checks in a directory.
+# 3. use dir.glob to specify one check or any checks matching partial check name or directory location.
+# 	 Examples:
+# 		- "ruby validate_nexpose_check.rb cmty-"  will validate all checks in the current directory starting with cmty-
+# 		- "ruby validate_nexpose_check.rb cmty-ssh-default-account-"  will validate all ssh account checks in the current directory
+# 		- "ruby validate_nexpose_check.rb cmty-ssh-default-account-pi-password-raspberry"  will validate the cmty-ssh-default-account-pi-password-raspberry vck and xml pair
+
+## TODO: add appropriate exception handlers etc.
 
 require 'rubygems'
 gem 'nokogiri'
@@ -25,15 +30,41 @@ else
 	checkName = ARGV[0].gsub(/.vck|.xml/i,"") # => "cmty-ssh-default-account-admin-password-admin123"
 end
 
-## record check names
-checkVck = "#{checkName}.vck"
-checkXml = "#{checkName}.xml"
 
 ## provide path locations to rapid7 schema files
 ## default location to find the schema files - console:/opt/rapid7/nexpose/plugins/xsd/
 xsdPath = "xsd/"
 vckXsdPath = "#{xsdPath}vulnerability-check.xsd"
 xmlXsdPath = "#{xsdPath}vulnerability-descriptor.xsd"
+
+def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
+	@directoryPath = directoryPath
+	Dir.glob("#{@directoryPath}*.vck").each do|f| 
+		
+		@vckXsdPath,@xmlXsdPath = vckXsdPath,xmlXsdPath
+		## record check names
+		@checkVck = f
+		@checkXml = f.gsub(/.vck/i,'.xml')
+		# # Validate vck
+		puts "Validating #{@checkVck} against #{@vckXsdPath}"
+		
+		begin
+			validate(@checkVck, @vckXsdPath, 'container').each do |error|
+		  		puts error.message
+			end
+		end
+		
+		# Validate descriptor xml
+		puts "Validating #{@checkXml} against #{@xmlXsdPath}"
+		
+		begin
+			validate(@checkXml, @xmlXsdPath, 'container').each do |error|
+		  		puts error.message
+			end
+		end
+	end
+end
+
 
 def validate(document_path, schema_path, root_element)
 	@document_path, @schema_path, @root_element = document_path, schema_path, root_element
@@ -44,20 +75,5 @@ def validate(document_path, schema_path, root_element)
   schema.validate(document)
 end
 
-# # Validate vck
-puts "Validating #{checkVck} against #{vckXsdPath}"
+directoryCheck(checkName,vckXsdPath,xmlXsdPath)
 
-begin
-	validate(checkVck, vckXsdPath, 'container').each do |error|
-  		puts error.message
-	end
-end
-
-# Validate descriptor xml
-puts "Validating #{checkXml} against #{xmlXsdPath}"
-
-begin
-	validate(checkXml, xmlXsdPath, 'container').each do |error|
-  		puts error.message
-	end
-end
