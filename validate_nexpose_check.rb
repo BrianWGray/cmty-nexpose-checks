@@ -21,10 +21,9 @@ gem 'nokogiri'
 require 'nokogiri'
 
 if ARGV.length < 1
-	# for now exit if no arguments are passed
-	puts "No check name provided"
-	puts "Try #{__FILE__} cmty-checkname"
-	exit
+	# for now if no argument is passed evaluate the current cwd
+	puts "No check name provided: defaulting to checking .vck files in ./"
+	puts "If this isn't what you intended try #{__FILE__} cmty-checkname"
 else
 	# accept check name and strip file extentions if they are provided
 	checkName = ARGV[0].gsub(/.vck|.xml/i,"") # => "cmty-ssh-default-account-admin-password-admin123"
@@ -40,27 +39,43 @@ xmlXsdPath = "#{xsdPath}vulnerability-descriptor.xsd"
 def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 	@directoryPath = directoryPath
 	Dir.glob("#{@directoryPath}*.vck").each do|f| 
-		
-		@vckXsdPath,@xmlXsdPath = vckXsdPath,xmlXsdPath
-		## record check names
-		@checkVck = f
-		@checkXml = f.gsub(/.vck/i,'.xml')
-		# # Validate vck
-		puts "Validating #{@checkVck} against #{@vckXsdPath}"
-		
-		begin
-			validate(@checkVck, @vckXsdPath, 'container').each do |error|
-		  		puts error.message
+
+		begin	
+
+			@vckXsdPath,@xmlXsdPath = vckXsdPath,xmlXsdPath
+			## record check names
+			@checkVck = f
+			@checkXml = f.gsub(/.vck/i,'.xml')
+			# # Validate vck
+			puts "Validating #{@checkVck} against #{@vckXsdPath}"
+			
+			if File.exists?(@checkVck)
+				begin
+					validate(@checkVck, @vckXsdPath, 'container').each do |error|
+			  			puts error.message
+					end
+				end
+			else 
+				puts "A file is missing and the check may not be validated"
 			end
-		end
-		
-		# Validate descriptor xml
-		puts "Validating #{@checkXml} against #{@xmlXsdPath}"
-		
-		begin
-			validate(@checkXml, @xmlXsdPath, 'container').each do |error|
-		  		puts error.message
+			
+			# Validate descriptor xml
+			puts "Validating #{@checkXml} against #{@xmlXsdPath}"
+			
+			if File.exists?(@checkXml)
+
+				begin
+					validate(@checkXml, @xmlXsdPath, 'container').each do |error|
+			  			puts error.message
+					end
+				end
+			else
+				puts "A file is missing and the check description may not be validated"
 			end
+
+		rescue => error
+  			puts error.message
+  			next
 		end
 	end
 end
@@ -68,11 +83,17 @@ end
 
 def validate(document_path, schema_path, root_element)
 	@document_path, @schema_path, @root_element = document_path, schema_path, root_element
+	begin
+  		schema = Nokogiri::XML::Schema(File.open(@schema_path))
+  		document = Nokogiri::XML(File.read(@document_path))
+  		# schema.validate(document.xpath("//#{root_element}").to_s)
+  		schema.validate(document)
 
-  schema = Nokogiri::XML::Schema(File.open(@schema_path))
-  document = Nokogiri::XML(File.read(@document_path))
-  # schema.validate(document.xpath("//#{root_element}").to_s)
-  schema.validate(document)
+  	rescue => error
+  		puts error
+ 	end
+
+
 end
 
 directoryCheck(checkName,vckXsdPath,xmlXsdPath)
