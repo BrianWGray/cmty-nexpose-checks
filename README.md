@@ -14,8 +14,8 @@ Check improvements are welcome
 # Resources
 
 ## Generate credential checks
-gen_cred_check.rb
-weak_creds.pl
+1. gen_cred_check.rb
+2. weak_creds.pl
 
 ## Validate checks and check descriptions against Rapid7 Schema files
 validate_nexpose_check.rb
