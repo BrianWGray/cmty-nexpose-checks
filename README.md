@@ -11,7 +11,7 @@ Check improvements are welcome
 
 
 
-# = Resources
+# Resources
 
 ## Generate credential checks
 gen_cred_check.rb
