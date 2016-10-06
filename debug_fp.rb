@@ -86,9 +86,14 @@ def getHttp(fpUri,fpVerb="GET",fpData="")
 	
 	http = Net::HTTP.new(fpUri.host, fpUri.port)
 
-	# For signature checks it doesn't matter if a valid certificate is present.
-	http.verify_mode = OpenSSL::SSL::VERIFY_NONE if fpUri.scheme.downcase == "https".downcase
-	
+	case fpUri.scheme.upcase
+		when "https".upcase
+			http.use_ssl = true
+		 	# For signature checks it doesn't matter if a valid certificate is present.
+		 	http.verify_mode = OpenSSL::SSL::VERIFY_NONE if fpUri.scheme.upcase == "https".upcase
+		else
+		end
+
 	case fpVerb.upcase
 	
 		when "Get".upcase
