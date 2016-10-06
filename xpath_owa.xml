@@ -1,0 +1,12 @@
+<fingerprints>
+    <!-- Exchange OWA added /auth/ to their .icon file  -->
+    <fingerprint>
+        <example file="microsoft-owa-15.0.1178.0.html" unique="0" product="Outlook Web App" version="15.0.1178.0" vendor="Microsoft" />
+        <get path="/owa/auth/logon.aspx"></get>
+        <test xpath="//link/@href" regex="/owa/auth/((?:\d+\.)+\d+)/">
+            <param pos="0" name="vendor" value="Microsoft"/>
+            <param pos="0" name="product" value="Outlook Web App"/>
+            <param pos="1" name="version"/>
+        </test>
+    </fingerprint>
+</fingerprints>
