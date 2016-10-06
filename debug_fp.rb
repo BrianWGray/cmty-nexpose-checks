@@ -19,6 +19,7 @@
 
 require 'rubygems'
 require 'net/http'
+require 'openssl'
 gem 'nokogiri'
 require 'nokogiri'
 require 'pp'
@@ -81,31 +82,32 @@ end
 ## Support HTTP Calls for fingerprint checks
 
 # Make HTTP Connection and GET URI data to be evaluated
-def getHttp(fpUri)
-	res = Net::HTTP.get_response(fpUri)
+def getHttp(fpUri,fpVerb="GET",fpData="")
 	
-	# Headers
-	res['Set-Cookie']            # => String
-	res.get_fields('set-cookie') # => Array
-	res.to_hash['set-cookie']    # => Array
-
-	return res
-end
-
-# Make HTTPS Connection and GET URI data to be evaluated
-def getHttps(fpUri)
 	http = Net::HTTP.new(fpUri.host, fpUri.port)
+
+	# For signature checks it doesn't matter if a valid certificate is present.
+	http.verify_mode = OpenSSL::SSL::VERIFY_NONE if fpUri.scheme.downcase == "https".downcase
 	
-	http.use_ssl = true
-	http.verify_mode = OpenSSL::SSL::VERIFY_NONE # For signature checks it doesn't matter if a valid certificate is present.
+	case fpVerb.upcase
+	
+		when "Get".upcase
+			request = Net::HTTP::Get.new(fpUri)  if fpVerb.upcase == "Get".upcase
+	
+		when "Post".upcase
+			request = Net::HTTP::Post.new(fpUri.request_uri)  if fpVerb.upcase == "Post".upcase
+			request.set_form_data(fpData)  if fpVerb.upcase == "Post".upcase
+		
+		else
+			requestFail = true
+		
+		end
 
-	# Headers
-	res['Set-Cookie']            # => String
-	res.get_fields('set-cookie') # => Array
-	res.to_hash['set-cookie']    # => Array
+	response = http.request(request) if !requestFail
 
-	return res
+	return response
 end
+
 
 def parseConfigs(fpXmlFile="./xpath_webapps.xml")
 	
@@ -127,11 +129,11 @@ def parseConfigs(fpXmlFile="./xpath_webapps.xml")
 	return @fpXml
 end
 
-def parseBody(fpUri,fpXpath,fpRegex)
+def parseBody(fpUri,fpVerb,fpData,fpXpath,fpRegex)
 	@fpUri = fpUri
 	@fpXpath = fpXpath
 	@fpRegex = fpRegex
-	@queryInfo = getHttp(@fpUri)
+	@queryInfo = getHttp(@fpUri,fpVerb,)
 	@value = Nokogiri::HTML.parse(@queryInfo.body)
 
 	xpathReturn = @value.xpath("#{@fpXpath}")
@@ -149,7 +151,8 @@ def parseBody(fpUri,fpXpath,fpRegex)
 	return returnValue
 end
 
-def evaluateFingerPrints(fpXml,url)
+def evaluateFingerPrints(fpXml,fpUrl)
+	@fpVerb = "GET" # Default Verb for requests
 
 	fpXml.xpath('//fingerprint').each do |fpInfo|
 		puts "Finger Print: "
@@ -159,9 +162,9 @@ def evaluateFingerPrints(fpXml,url)
 		
 		fpInfo.xpath('get').each do |getInfo|
 			# Check Path that will be provided from the signature file
-			pathVerb = "GET"
+			@fpVerb = "GET"
 			@path = getInfo.attributes["path"].to_s
-			puts "\r\n#{pathVerb} #{@path}\r\n"
+			puts "\r\n#{@fpVerb} #{@path}\r\n"
 		
 			fpInfo.xpath('test').each do |testInfo|
 	 			@fpXpath = testInfo.attributes["xpath"].to_s
@@ -172,16 +175,17 @@ def evaluateFingerPrints(fpXml,url)
 		end
 	
 		fpInfo.xpath('post').each do |postInfo|
-			pathVerb = "POST"
+			@fpVerb = "POST"
+			@fpData = "" # What should be posted to the URI?
 			@path = postInfo.attributes["path"].to_s
 			puts "\r\n#{pathVerb} #{@path}\r\n"
 		end
 	  
 
-		@fpUri = URI("#{url.scheme}://#{url.host}#{@path}")
+		@fpUri = URI("#{fpUrl.scheme}://#{fpUrl.host}#{@path}")
 
 		# Parse a specified URI based on information from the fingerprint.
-		parsedReturn = parseBody(@fpUri,@fpXpath,@fpRegex)
+		parsedReturn = parseBody(@fpUri,@fpVerb,@fpData,@fpXpath,@fpRegex)
 		
 		#puts "\r\nResults:\r\n"
 		
