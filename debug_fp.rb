@@ -62,19 +62,19 @@ def validate(document_path, schema_path, root_element)
 end
 
 # Apply XML Validations against the finger print file.
-def fpCheck(fpXml="./xpath_webapps.xml",xmlXsdPath)
-	@fpXml = fpXml
+def fpCheck(fpXmlFile="./xpath_webapps.xml",xmlXsdPath)
+	@fpXmlFile = fpXmlFile
 	@xmlXsdPath = xmlXsdPath
 
-	if File.exists?(@fpXml)
+	if File.exists?(@fpXmlFile)
 
 				begin
-					validate(@fpXml, @xmlXsdPath, 'container').each do |error|
+					validate(@fpXmlFile, @xmlXsdPath, 'container').each do |error|
 			  			puts error.message
 					end
 				end
 			else
-				puts "\n**	The #{@fpXml} file is missing and the finger print description may not be validated\n\n"
+				puts "\n**	The #{@fpXmlFile} file is missing and the finger print description may not be validated\n\n"
 			end
 end
 
@@ -162,6 +162,13 @@ def evaluateFingerPrints(fpXml,url)
 			pathVerb = "GET"
 			@path = getInfo.attributes["path"].to_s
 			puts "\r\n#{pathVerb} #{@path}\r\n"
+		
+			fpInfo.xpath('test').each do |testInfo|
+	 			@fpXpath = testInfo.attributes["xpath"].to_s
+	 			@fpRegex = testInfo.attributes["regex"].to_s
+	 			puts "\r\nxpath: #{@fpXpath}"
+	 			puts "regex: #{@fpRegex}"
+			end
 		end
 	
 		fpInfo.xpath('post').each do |postInfo|
@@ -170,12 +177,6 @@ def evaluateFingerPrints(fpXml,url)
 			puts "\r\n#{pathVerb} #{@path}\r\n"
 		end
 	  
-		fpInfo.xpath('test').each do |testInfo|
-	 		@fpXpath = testInfo.attributes["xpath"].to_s
-	 		@fpRegex = testInfo.attributes["regex"].to_s
-	 		puts "\r\nxpath: #{@fpXpath}"
-	 		puts "regex: #{@fpRegex}"
-		end
 
 		@fpUri = URI("#{url.scheme}://#{url.host}#{@path}")
 
