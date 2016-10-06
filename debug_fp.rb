@@ -36,7 +36,6 @@ else
 
 	# Broken out in this fasion to help me remember values
 	# fpUri = URI("#{url.scheme}://#{url.host}#{url.path}#{url.port}#{url.query}#{url.fragment}") 
-
 end
 
 
@@ -59,8 +58,6 @@ def validate(document_path, schema_path, root_element)
   	rescue => error
   		puts error
  	end
-
-
 end
 
 # Apply XML Validations against the finger print file.
@@ -68,16 +65,15 @@ def fpCheck(fpXmlFile="./xpath_webapps.xml",xmlXsdPath)
 	@fpXmlFile = fpXmlFile
 	@xmlXsdPath = xmlXsdPath
 
-	if File.exists?(@fpXmlFile)
-
-				begin
-					validate(@fpXmlFile, @xmlXsdPath, 'container').each do |error|
-			  			puts error.message
-					end
-				end
-			else
-				puts "\n**	The #{@fpXmlFile} file is missing and the finger print description may not be validated\n\n"
+	if File.exists?(@fpXmlFile) # => @fpXmlFile = true
+		begin
+			validate(@fpXmlFile, @xmlXsdPath, 'container').each do |error|
+				puts error.message
 			end
+		end
+	else
+		puts "\n**	The #{@fpXmlFile} file is missing and the finger print description may not be validated\n\n"
+	end
 end
 
 ## Support HTTP Calls for fingerprint checks
@@ -98,7 +94,6 @@ def getHttp(fpUri,fpVerb="GET",fpData="")
 		end
 
 	case fpVerb.upcase
-	
 		when "Get".upcase
 			# For now forcing encoding to text as some devices being tested have broken compression implemented.
 			request = Net::HTTP::Get.new(fpUri,initheader = {'Accept-Encoding' => 'gzip, default, br', 'User-Agent' => @fpUserAgent})  if fpVerb.upcase == "Get".upcase
@@ -112,22 +107,16 @@ def getHttp(fpUri,fpVerb="GET",fpData="")
 		
 		else
 			requestFail = true
-		
 		end
 
 	response = http.request(request) if !requestFail
-
-
 	return response
 end
 
 
 def parseConfigs(fpXmlFile="./xpath_webapps.xml")
-	
 
 	if File.exists?(fpXmlFile)
-
-
 		begin
 			# Load fingerprint xml 
 			@fpXml = Nokogiri::XML(File.open(fpXmlFile)) do |config|
@@ -168,7 +157,6 @@ def evaluateFingerPrints(fpXml,fpUrl)
 	@fpVerb = "GET" # Default Verb for requests
 
 	fpXml.xpath('//fingerprint').each do |fpInfo|
-		
 		fpInfo.xpath('example').each do |exampleInfo|
 			puts "\r\n----------------------------- Finger Print: #{exampleInfo.attributes["product"].to_s} -----------------------------\r\n"
 		end
@@ -194,7 +182,6 @@ def evaluateFingerPrints(fpXml,fpUrl)
 			puts "\r\n#{pathVerb} #{@path}\r\n"
 		end
 	  
-
 		@fpUri = URI("#{fpUrl.scheme}://#{fpUrl.host}:#{fpUrl.port}#{@path}")
 
 		# Parse a specified URI based on information from the fingerprint.
@@ -206,28 +193,14 @@ def evaluateFingerPrints(fpXml,fpUrl)
 		#puts "RegEx Match: #{parsedReturn[0][0]}"
 		#puts "Group 1 (Version) : #{parsedReturn[0][1]}"
 		#puts "\r\n"
-	
 	end
-
 end
 
 # fpCheck(fpXmlFile,xmlXsdPath) # No XSD currently seems to exists to validate finger prints?
 
 # Load fingerprint xml into fpXml
 fpXml = parseConfigs(fpXmlFile)
-
 evaluateFingerPrints(fpXml,url)
-
-
-
-
-
-
-
-
-
-
-
 
 
 
