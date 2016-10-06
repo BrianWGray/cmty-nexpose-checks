@@ -24,6 +24,7 @@ gem 'nokogiri'
 require 'nokogiri'
 require 'pp'
 
+
 if ARGV.length < 2
 	# for now if no argument is passed evaluate the current cwd
 	puts "No file name or base url provided: Exiting..."
@@ -34,7 +35,7 @@ else
 	url = URI.parse(ARGV[1])
 
 	# Broken out in this fasion to help me remember values
-	# fpUri = URI("#{url.scheme}://#{url.host}#{url.path}#{url.query}#{url.fragment}") 
+	# fpUri = URI("#{url.scheme}://#{url.host}#{url.path}#{url.port}#{url.query}#{url.fragment}") 
 
 end
 
@@ -83,7 +84,9 @@ end
 
 # Make HTTP Connection and GET URI data to be evaluated
 def getHttp(fpUri,fpVerb="GET",fpData="")
-	
+	#@fpUserAgent = "CMU/2.2 CFNetwork/672.0.8 Darwin/14.0.0"
+	@fpUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:49.0) Gecko/20100101 Firefox/49.0"
+
 	http = Net::HTTP.new(fpUri.host, fpUri.port)
 
 	case fpUri.scheme.upcase
@@ -97,8 +100,12 @@ def getHttp(fpUri,fpVerb="GET",fpData="")
 	case fpVerb.upcase
 	
 		when "Get".upcase
-			request = Net::HTTP::Get.new(fpUri)  if fpVerb.upcase == "Get".upcase
-	
+			# For now forcing encoding to text as some devices being tested have broken compression implemented.
+			request = Net::HTTP::Get.new(fpUri,initheader = {'Accept-Encoding' => 'gzip, default, br', 'User-Agent' => @fpUserAgent})  if fpVerb.upcase == "Get".upcase
+			# request = Net::HTTP::Get.new(fpUri)  if fpVerb.upcase == "Get".upcase # Default Header
+			
+			puts "GET #{fpUri}"
+
 		when "Post".upcase
 			request = Net::HTTP::Post.new(fpUri.request_uri)  if fpVerb.upcase == "Post".upcase
 			request.set_form_data(fpData)  if fpVerb.upcase == "Post".upcase
@@ -109,6 +116,7 @@ def getHttp(fpUri,fpVerb="GET",fpData="")
 		end
 
 	response = http.request(request) if !requestFail
+
 
 	return response
 end
@@ -160,16 +168,16 @@ def evaluateFingerPrints(fpXml,fpUrl)
 	@fpVerb = "GET" # Default Verb for requests
 
 	fpXml.xpath('//fingerprint').each do |fpInfo|
-		puts "Finger Print: "
+		
 		fpInfo.xpath('example').each do |exampleInfo|
-			puts "\r\nProduct  = " + exampleInfo.attributes["product"].to_s
+			puts "\r\n----------------------------- Finger Print: #{exampleInfo.attributes["product"].to_s} -----------------------------\r\n"
 		end
 		
 		fpInfo.xpath('get').each do |getInfo|
 			# Check Path that will be provided from the signature file
 			@fpVerb = "GET"
 			@path = getInfo.attributes["path"].to_s
-			puts "\r\n#{@fpVerb} #{@path}\r\n"
+			puts "\r\nRequest will #{@fpVerb} #{@path}\r\n"
 		
 			fpInfo.xpath('test').each do |testInfo|
 	 			@fpXpath = testInfo.attributes["xpath"].to_s
@@ -187,7 +195,7 @@ def evaluateFingerPrints(fpXml,fpUrl)
 		end
 	  
 
-		@fpUri = URI("#{fpUrl.scheme}://#{fpUrl.host}#{@path}")
+		@fpUri = URI("#{fpUrl.scheme}://#{fpUrl.host}:#{fpUrl.port}#{@path}")
 
 		# Parse a specified URI based on information from the fingerprint.
 		parsedReturn = parseBody(@fpUri,@fpVerb,@fpData,@fpXpath,@fpRegex)
