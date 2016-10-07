@@ -18,6 +18,9 @@ checkType = "ssh" # For now force service type to SSH
 
 ## Collect interactive information
 # TODO: make this an optional collection type and also provide various arg entry options.
+puts "Enter Check Type: (SSH, Telnet)"
+checkType = gets.chomp
+
 puts "Enter user account:"
 username = gets.chomp
 
@@ -36,16 +39,28 @@ end
 
 def vck_file_content(username, password, checkType)
   @username, @password, @checkType = username, password, checkType
-  if @checkType.downcase == "ssh"
-    vckFileContent =  "<VulnerabilityCheck id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" scope=\"endpoint\">\n"
-    vckFileContent += "    <NetworkService type=\"#{@checkType.upcase}\"/>\n"
-    vckFileContent += "       <DefaultAccount>\n"
-    vckFileContent += "          <uid>#{@username}</uid>\n"
-    vckFileContent += "          <password>#{@password}</password>\n"
-    vckFileContent += "       </DefaultAccount>\n"
-    vckFileContent += "</VulnerabilityCheck>\n"
-  else
-    raise Invalid, "service type unrecognized"
+  case @checkType.downcase 
+      when "ssh"
+        vckFileContent =  "<VulnerabilityCheck id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" scope=\"endpoint\">\n"
+        vckFileContent += "    <NetworkService type=\"#{@checkType.upcase}\"/>\n"
+        vckFileContent += "       <DefaultAccount>\n"
+        vckFileContent += "          <uid>#{@username}</uid>\n"
+        vckFileContent += "          <password><![CDATA[#{@password}]]></password>\n"
+        vckFileContent += "       </DefaultAccount>\n"
+        vckFileContent += "</VulnerabilityCheck>\n"
+  
+      when "telnet"
+
+        vckFileContent =  "<VulnerabilityCheck id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" scope=\"endpoint\">\n"
+        vckFileContent += "    <NetworkService type=\"#{@checkType.capitalize}\"/>\n"
+        vckFileContent += "       <DefaultAccount>\n"
+        vckFileContent += "          <uid>#{@username}</uid>\n"
+        vckFileContent += "          <password><![CDATA[#{@password}]]></password>\n"
+        vckFileContent += "       </DefaultAccount>\n"
+        vckFileContent += "</VulnerabilityCheck>\n"
+
+      else
+        raise Invalid, "service type unrecognized"
   end
 
   return vckFileContent
@@ -53,36 +68,67 @@ end
 
 def xml_file_content(username, password, checkType, timeInfo)
   @username, @password, @checkType, @timeInfo = username, password, checkType, timeInfo
-  if @checkType == "ssh"
-    xmlFileContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-    xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"1.0\">\n"
-    xmlFileContent += "  <name>Default #{@checkType} account: #{@username} password \"#{@password}\"</name>\n"
-    xmlFileContent += "  <severity>10</severity>\n"
-    xmlFileContent += "  <cvss>(AV:N/AC:L/Au:N/C:C/I:C/A:C)</cvss>\n"
-    xmlFileContent += "  <Tags>\n"
-    xmlFileContent += "    <tag>Default Account</tag>\n"
-    xmlFileContent += "    <tag>#{@checkType.upcase}</tag>\n"
-    xmlFileContent += "  </Tags>\n"
-    xmlFileContent += "  <AlternateIds>\n"
-    xmlFileContent += "  </AlternateIds>\n\n"
-    xmlFileContent += "  <Description>\n"
-    xmlFileContent += "    <p>The #{@username} account uses a password of &quot;#{@password}&quot;.  This would allow\n"
-    xmlFileContent += "      anyone to log into the machine via #{@checkType.upcase} and take complete\n"
-    xmlFileContent += "      control.</p>\n"
-    xmlFileContent += "  </Description>\n"
-    xmlFileContent += "  <Solutions>\n"
-    xmlFileContent += "    <Solution id=\"cmty-#{@checkType}-default-account-#{@username}-password-#{@password}\" time=\"15m\">\n"
-    xmlFileContent += "      <summary>Fix Default #{@checkType.upcase} account: #{@username} password: #{@password}</summary>\n"
-    xmlFileContent += "      <workaround>\n"
-    xmlFileContent += "        <p>\n"
-    xmlFileContent += "          Change the password to a strong non-default value.\n"
-    xmlFileContent += "        </p>\n"
-    xmlFileContent += "      </workaround>\n"
-    xmlFileContent += "    </Solution>\n"
-    xmlFileContent += "  </Solutions>\n"
-    xmlFileContent += "</Vulnerability>\n"
-  else
-    raise Invalid, "service type unrecognized"
+  case @checkType.downcase
+    when "ssh"
+      xmlFileContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+      xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"1.0\">\n"
+      xmlFileContent += "  <name>Default #{@checkType} account: #{@username} password \"<![CDATA[#{@password}]]>\"</name>\n"
+      xmlFileContent += "  <severity>10</severity>\n"
+      xmlFileContent += "  <cvss>(AV:N/AC:L/Au:N/C:C/I:C/A:C)</cvss>\n"
+      xmlFileContent += "  <Tags>\n"
+      xmlFileContent += "    <tag>Default Account</tag>\n"
+      xmlFileContent += "    <tag>#{@checkType.upcase}</tag>\n"
+      xmlFileContent += "  </Tags>\n"
+      xmlFileContent += "  <AlternateIds>\n"
+      xmlFileContent += "  </AlternateIds>\n\n"
+      xmlFileContent += "  <Description>\n"
+      xmlFileContent += "    <p>The #{@username} account uses a password of &quot;<![CDATA[#{@password}]]>&quot;.  This would allow\n"
+      xmlFileContent += "      anyone to log into the machine via #{@checkType.upcase} and take complete\n"
+      xmlFileContent += "      control.</p>\n"
+      xmlFileContent += "  </Description>\n"
+      xmlFileContent += "  <Solutions>\n"
+      xmlFileContent += "    <Solution id=\"cmty-#{@checkType}-default-account-#{@username}-password-#{@password}\" time=\"15m\">\n"
+      xmlFileContent += "      <summary>Fix Default #{@checkType.upcase} account: #{@username} password: <![CDATA[#{@password}]]></summary>\n"
+      xmlFileContent += "      <workaround>\n"
+      xmlFileContent += "        <p>\n"
+      xmlFileContent += "          Change the password to a strong non-default value.\n"
+      xmlFileContent += "        </p>\n"
+      xmlFileContent += "      </workaround>\n"
+      xmlFileContent += "    </Solution>\n"
+      xmlFileContent += "  </Solutions>\n"
+      xmlFileContent += "</Vulnerability>\n"
+
+    when "telnet"
+      xmlFileContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+      xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"1.0\">\n"
+      xmlFileContent += "  <name>Default #{@checkType.capitalize} account: #{@username} password \"<![CDATA[#{@password}]]>\"</name>\n"
+      xmlFileContent += "  <severity>10</severity>\n"
+      xmlFileContent += "  <cvss>(AV:N/AC:L/Au:N/C:C/I:C/A:C)</cvss>\n"
+      xmlFileContent += "  <Tags>\n"
+      xmlFileContent += "    <tag>Default Account</tag>\n"
+      xmlFileContent += "    <tag>#{@checkType.capitalize}</tag>\n"
+      xmlFileContent += "  </Tags>\n"
+      xmlFileContent += "  <AlternateIds>\n"
+      xmlFileContent += "  </AlternateIds>\n\n"
+      xmlFileContent += "  <Description>\n"
+      xmlFileContent += "    <p>The #{@username} account uses a password of &quot;<![CDATA[#{@password}]]>&quot;.  This would allow\n"
+      xmlFileContent += "      anyone to log into the machine via #{@checkType.upcase} and take complete\n"
+      xmlFileContent += "      control.</p>\n"
+      xmlFileContent += "  </Description>\n"
+      xmlFileContent += "  <Solutions>\n"
+      xmlFileContent += "    <Solution id=\"cmty-#{@checkType}-default-account-#{@username}-password-#{@password}\" time=\"15m\">\n"
+      xmlFileContent += "      <summary>Fix Default #{@checkType.upcase} account: #{@username} password: <![CDATA[#{@password}]]></summary>\n"
+      xmlFileContent += "      <workaround>\n"
+      xmlFileContent += "        <p>\n"
+      xmlFileContent += "          Change the password to a strong non-default value.\n"
+      xmlFileContent += "        </p>\n"
+      xmlFileContent += "      </workaround>\n"
+      xmlFileContent += "    </Solution>\n"
+      xmlFileContent += "  </Solutions>\n"
+      xmlFileContent += "</Vulnerability>\n"
+
+    else
+      raise Invalid, "service type unrecognized"
   end
 
   return xmlFileContent
