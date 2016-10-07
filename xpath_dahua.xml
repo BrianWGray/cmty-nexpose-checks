@@ -1,0 +1,14 @@
+
+<fingerprints>
+    <!-- Dahua-DVR - Dev  -->
+    <fingerprint>
+        <example file="Dahua-DVR-3.0.html" unique="0" product="Dahua-DVR" version="3.0" vendor="Dahua" />
+        <get path="/js/loginEx.js"></get>
+        <test xpath="//body" regex="Dahua(\d+\.(\d+))-Web">
+            <param pos="0" name="vendor" value="Dahua"/>
+            <param pos="0" name="product" value="Dahua-DVR"/>
+            <param pos="1" name="version"/>
+        </test>
+    </fingerprint>
+
+</fingerprints>
