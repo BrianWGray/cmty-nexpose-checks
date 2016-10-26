@@ -139,17 +139,19 @@ def parseBody(fpUri,fpVerb,fpData,fpXpath,fpRegex)
 	@value = Nokogiri::HTML.parse(@queryInfo.body)
 
 	xpathReturn = @value.xpath("#{@fpXpath}")
-	#regexReturn = xpathReturn.match("#{@fpRegex}")
-	regexReturn = Array.new
-	xpathReturn.each do |item|
-    	regexReturn = item.to_s.match("#{fpRegex}")
-  	end
+	regexReturn = xpathReturn.to_s.match("#{@fpRegex}")
+	#regexReturn = Array.new
+	
+	#xpathReturn.each do |item|
+    #	regexReturn << item.to_s.match("#{fpRegex}")
+  	#end
 
 		puts "\r\nResults:\r\n"
-		
+	
 		puts "XPath Match: #{xpathReturn}"
 		puts "RegEx Match: #{regexReturn}"
 		puts "Group 1 (Version) : #{regexReturn[1]}" if !regexReturn.nil?
+		puts "Group 2 (SubVersion) : #{regexReturn[2]}" if !regexReturn.nil?
 		puts "\r\n"
 	
 	returnValue = [regexReturn, xpathReturn]
