@@ -56,7 +56,7 @@ def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 					end
 				end
 			else 
-				puts "The #{@checkVck} file is missing and the check may not be validated"
+				puts "\n**	The #{@checkVck} file is missing and the check may not be validated\n\n"
 			end
 			
 			# Validate descriptor xml
@@ -70,7 +70,7 @@ def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 					end
 				end
 			else
-				puts "The #{@checkXml} file is missing and the check description may not be validated"
+				puts "\n**	The #{@checkXml} file is missing and the check description may not be validated\n\n"
 			end
 
 		rescue => error
@@ -96,5 +96,6 @@ def validate(document_path, schema_path, root_element)
 
 end
 
+# Run
 directoryCheck(checkName,vckXsdPath,xmlXsdPath)
 
