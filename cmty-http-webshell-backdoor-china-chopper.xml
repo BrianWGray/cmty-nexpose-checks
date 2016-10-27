@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Vulnerability id="cmty-http-webshell-backdoor-china-chopper" published="2013-08-07" added="2016-09-04" modified="2016-09-04" version="2.0">
+  <name>China Chopper web shell backdoor malware</name>
+  <severity>10</severity>
+  <pci severity="5"/>
+  <Tags>
+     <tag>Web</tag>
+  </Tags>
+  <cvss>(AV:N/AC:L/Au:N/C:C/I:C/A:C)</cvss>
+  <AlternateIds>
+    <id name="URL">https://www.fireeye.com/blog/threat-research/2013/08/breaking-down-the-china-chopper-web-shell-part-i.html</id>  
+  </AlternateIds>
+  <Description>
+     <p>A web shell is a type of malicious file that is uploaded to a web server. Potential methods of infection include SQL injection or remote file inclusions via vulnerable web applications. Web shells typically contain Remote Access Tool (RAT) or backdoor functionality, allowing attackers to retrieve information about the infected host and pass commands to the back-end server via HTTP requests. China Chopper is a fairly simple backdoor in terms of components. It has two key components:the Web shell command-and-control (CnC) client binary and a text-based Web shell payload (server component). The text-based payload is so simple and short that an attacker could type it by hand right on the target server — no file transfer needed.
+     </p>
+  </Description>
+  <Solutions>
+    <Solution id="cmty-http-webshell-backdoor-china-chopper" time="24h">
+      <summary>This detection is error prone and should be manually evaluated.
+        Remove the web shell file and fix any web application vulnerabilities that may have been used to upload it
+
+Delete the web shell file and any references to it from the server so that it may no longer be accessed or executed.
+
+Review your web application source code to identify and fix the vulnerability that allowed the web shell to be uploaded to the server (e.g. SQL injection or remote file inclusion). Keep in mind that it is often easy for an attacker to escalate from installing a web shell to gaining complete control of the entire computer running the web server.
+
+You should follow incident response best practices and ensure the system is reviewed by a security expert. In many cases it is not possible to ensure the system has been completely restored to a secure state, so a complete system rebuild may be necessary.
+      </summary>
+      <workaround>
+          <p>If the file content is determined to be a shell providing an eval(Request.item... by reviewing the file on the server begin triage immediately.  </p>
+    </workaround>
+    </Solution>
+  </Solutions>
+</Vulnerability>

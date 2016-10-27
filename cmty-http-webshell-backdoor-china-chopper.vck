@@ -1,0 +1,15 @@
+<VulnerabilityCheck id="cmty-http-webshell-backdoor-china-chopper" scope="endpoint">
+	<NetworkService type="HTTP|HTTPS">
+		<Product>
+			<Component name="Outlook Web App">
+			</Component>
+ 		</Product>
+	</NetworkService>
+	<HTTPCheck enableCookies="1">
+		<HTTPRequest method="GET">
+			<URI>/owa/auth/owaerr.aspx</URI>
+		</HTTPRequest>
+		<HTTPResponse code="200">
+		</HTTPResponse>
+	</HTTPCheck>
+</VulnerabilityCheck>

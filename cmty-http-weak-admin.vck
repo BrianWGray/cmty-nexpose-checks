@@ -1,5 +1,5 @@
 <VulnerabilityCheck id="cmty-http-weak-admin" scope="endpoint">
-   <NetworkService type="HTTP"/>
+   <NetworkService type="HTTP|HTTPS"/>
    <DefaultAccount>
       <uid>admin</uid>
       <password>admin+admin</password>
