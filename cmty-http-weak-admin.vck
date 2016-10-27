@@ -1,4 +1,4 @@
-<VulnerabilityCheck id="cmty-http-weak-admin.vck" scope="endpoint">
+<VulnerabilityCheck id="cmty-http-weak-admin" scope="endpoint">
    <NetworkService type="HTTP"/>
    <DefaultAccount>
       <uid>admin</uid>
