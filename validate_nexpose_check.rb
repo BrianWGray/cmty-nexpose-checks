@@ -36,7 +36,7 @@ xsdPath = "xsd/"
 vckXsdPath = "#{xsdPath}vulnerability-check.xsd"
 xmlXsdPath = "#{xsdPath}vulnerability-descriptor.xsd"
 
-def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
+def directory_check(directoryPath="./",vckXsdPath,xmlXsdPath)
 	@directoryPath = directoryPath
 	Dir.glob("#{@directoryPath}*.vck").each do|f| 
 
@@ -45,22 +45,25 @@ def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 			@vckXsdPath,@xmlXsdPath = vckXsdPath,xmlXsdPath
 			## record check names
 			@checkVck = f
-			@checkXml = f.gsub(/.vck/i,'.xml')
+			
 			# # Validate vck
-			puts "Validating #{@checkVck} against #{@vckXsdPath}"
+			puts "\n\n\e[36mValidating #{@checkVck} against #{@vckXsdPath}\n\e[0m"
 			
 			if File.exists?(@checkVck)
 				begin
 					validate(@checkVck, @vckXsdPath, 'container').each do |error|
-			  			puts error.message
+			  			puts "\e[31]m[WARNING]\e[0m - #{error.message}"
 					end
+					@checkSolName = solution_exists(@checkVck, '//VulnerabilityCheck/@id')
+					@checkXml = "#{@checkSolName}.xml"
 				end
+
 			else 
-				puts "\n**	The #{@checkVck} file is missing and the check may not be validated\n\n"
+				puts "\n\n\n\e[31m[WARNING]\n\e[0m - The #{@checkVck} file is missing and the check may not be validated\n\n"
 			end
 			
 			# Validate descriptor xml
-			puts "Validating #{@checkXml} against #{@xmlXsdPath}"
+			puts "\n\n\e[36mValidating #{@checkXml} from #{@checkVck} against #{@xmlXsdPath}\n\e[0m"
 			
 			if File.exists?(@checkXml)
 
@@ -68,9 +71,15 @@ def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 					validate(@checkXml, @xmlXsdPath, 'container').each do |error|
 			  			puts error.message
 					end
+
+					@solName = solution_exists(@checkXml, '//Vulnerability/@id')
+					@solFileName = @checkXml.gsub(/.xml/i,"") 
+					puts "\n\e[31m[WARNING]\e[0m - Solution ID \e[35m#{@solName}\e[0m and File name \e[35m#{@solFileName}\e[0m.xml do not match\n\e[31m[WARNING]\e[0m - Review the Vulnerability ID within the solution file." if @solName .to_s.chomp != @solFileName.to_s.chomp
+
 				end
 			else
-				puts "\n**	The #{@checkXml} file is missing and the check description may not be validated\n\n"
+				puts "\n\e[31m[WARNING]\e[0m - #{@checkXml} file could not be found\n\e[31m[WARNING]\e[0m - This may indicate a typo, an invalid vulnerability ID being referenced in \e[33m#{@checkVck}\e[0m, or a missing file\n\n"
+				puts "If a check specifies <VulnerabilityCheck id=\"#{@solName}\"... then the name must match the vulnerability definition base filename and id that the check points to.\n\n"
 			end
 
 		rescue => error
@@ -80,12 +89,42 @@ def directoryCheck(directoryPath="./",vckXsdPath,xmlXsdPath)
 	end
 end
 
+def parse_xml(xmlFile)
+	if File.exists?(xmlFile)
+		begin
+			# Load xml file
+			@xml = Nokogiri::XML(File.open(xmlFile)) do |config|
+				config.options = Nokogiri::XML::ParseOptions::NONET # Disable Network Connections during parsing
+			end
+		end
+	else
+		puts "\n\e[31m[WARNING]\e[0m -	The file: #{@xml} is was not found.\n\n"
+		exit(1)
+	end
+	
+	return @xml
+end
 
-def validate(document_path, schema_path, root_element)
-	@document_path, @schema_path, @root_element = document_path, schema_path, root_element
+def solution_exists(documentPath, solXpath)
+	@directoryPath = documentPath
+	@solAvailable = false 
+
+	@xml = parse_xml(documentPath)
+
+	@solName = @xml.xpath(solXpath)
+
+	puts @directoryPath
+	puts "extracted solution id: #{@solName}"
+
+	return @solName
+end
+
+
+def validate(documentPath, schemaPath, rootElement)
+	@documentPath, @schemaPath, @rootElement = documentPath, schemaPath, rootElement
 	begin
-  		schema = Nokogiri::XML::Schema(File.open(@schema_path))
-  		document = Nokogiri::XML(File.read(@document_path))
+  		schema = Nokogiri::XML::Schema(File.open(@schemaPath))
+  		document = Nokogiri::XML(File.read(@documentPath))
   		# schema.validate(document.xpath("//#{root_element}").to_s)
   		schema.validate(document)
 
@@ -97,5 +136,5 @@ def validate(document_path, schema_path, root_element)
 end
 
 # Run
-directoryCheck(checkName,vckXsdPath,xmlXsdPath)
+directory_check(checkName,vckXsdPath,xmlXsdPath)
 
