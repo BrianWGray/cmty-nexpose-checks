@@ -1,0 +1,14 @@
+
+<fingerprints>
+    <!-- Drupal Install page - Dev  -->
+    <fingerprint>
+        <example file="install.php" unique="0" product="Drupal" version="7" vendor="Drupal" />
+        <get path="/install.php"></get>
+        <test xpath='//html/head/meta[@name="Generator"]/@content' regex="Drupal\W(\d+)">
+            <param pos="0" name="vendor" value="Drupal"/>
+            <param pos="0" name="product" value="Drupal"/>
+            <param pos="1" name="version"/>
+        </test>
+    </fingerprint>
+
+</fingerprints>
