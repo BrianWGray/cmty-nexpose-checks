@@ -1,0 +1,13 @@
+<VulnerabilityCheck id="cmty-http-open-proxy" scope="endpoint">
+   <NetworkService type="HTTP|HTTPS"/>
+   <HTTPCheck enableCookies="0">
+      <HTTPRequest method="HEAD">
+         <URI>http://www.google.com:80/</URI>
+      </HTTPRequest>
+      <HTTPResponse code="200">
+         <HTTPHeader name="Set-Cookie">
+            <regex>;\s.*domain=[^ ]*google\.com.*</regex>
+         </HTTPHeader>
+      </HTTPResponse>
+   </HTTPCheck>
+</VulnerabilityCheck>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-http-open-proxy" published="2007-07-23" added="2007-07-23" modified="2016-11-24" version="2.0">
+  <name>Open HTTP Proxy</name>
+  <severity>5</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:N/I:P/A:N)</cvss>
+  <Tags>
+    <tag>HTTP</tag>
+    <tag>Web</tag>
+  </Tags>
+  <AlternateIds>
+    <id name="CERT-VN">150227</id>
+    <id name="URL">http://spamlinks.net/prevent-secure-proxy-fix.htm</id>
+    <id name="URL">http://www.web-cache.com/Writings/Internet-Drafts/draft-luotonen-web-proxy-tunneling-01.txt</id>
+    <id name="URL">https://wiki.apache.org/httpd/ProxyAbuse</id>
+  </AlternateIds>
+  <Description>
+    <p>
+         Open proxies allow malicious clients to mount attacks which
+         originate from the IP of the proxy server, without requiring the
+         attacker to authenticate to the proxy first.
+      </p>
+      <p>
+         Additionally, an open proxy may allow an attacker to access
+         an internal network which would be otherwise secure.
+      </p>
+      <p>
+         Steps should be taken to correctly configure the proxy server
+         such that unauthorized connections are denied.
+      </p>
+  </Description>
+  <Solutions>
+    <SolutionRef id="cmty-squid-disable-default-open-proxy"/>
+    <SolutionRef id="cmty-apache-disable-default-open-proxy"/>
+    <SolutionRef id="microsoft-isa-disable-default-open-proxy"/>
+  </Solutions>
+</Vulnerability>
