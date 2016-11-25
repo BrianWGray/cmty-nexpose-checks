@@ -1,0 +1,12 @@
+<fingerprints>
+    <!-- ZModo DVR - still searching for a location to pull a web client version number -->
+    <fingerprint>
+        <example file="zmodo.0.html" unique="0" product="ZModo" version="0.0" vendor="ZModo" />
+        <get path="/play.html"></get>
+        <test xpath="//img/@src" regex="images/logo_zmodo.jpg">
+            <param pos="0" name="vendor" value="zmodo"/>
+            <param pos="0" name="product" value="zmodo"/>
+            <param pos="1" name="version"/>
+        </test>
+    </fingerprint>
+</fingerprints>
