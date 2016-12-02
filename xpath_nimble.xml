@@ -1,0 +1,12 @@
+<fingerprints>
+    <!-- Nimble Storage login page  -->
+    <fingerprint>
+        <example file="nimble.html" unique="0" product="Nimble Storage" version="0" vendor="Nimble Storage" />
+        <get path="/"></get>
+        <test xpath="//script/@src" regex="com.nimblestorage.nimbus.NimbusEntryPoint.nocache.js">
+            <param pos="0" name="vendor" value="Nimble Storage"/>
+            <param pos="0" name="product" value="Nimble Storage"/>
+            <param pos="0" name="version" value="0"/>
+        </test>
+    </fingerprint>
+</fingerprints>
