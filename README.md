@@ -10,8 +10,10 @@ Validate checks prior to using them.
 Check improvements are welcome
 
 
-
 # Resources
+
+## Wiki Info
+https://github.com/BrianWGray/cmty-nexpose-checks/wiki
 
 ## Generate credential checks
 1. gen_cred_check.rb
