@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-mcsqlr-amplification" published="2014-12-24" added="2018-01-04" modified="2018-01-04" version="2.0">
+  <name>MS SQL Server Resolution Traffic Amplification</name>
+  <severity>1</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:N/I:N/A:P)</cvss>
+  <Tags>
+    <tag>Denial of Service</tag>
+    <tag>Database</tag>
+    <tag>Microsoft SQL Server</tag>
+  </Tags>
+  <AlternateIds>
+    <id name="URL">http://kurtaubuchon.blogspot.ca/2015/01/mc-sqlr-amplification-ms-sql-server.html</id>
+    <id name="URL">https://blogs.akamai.com/2015/02/plxsert-warns-of-ms-sql-reflection-attacks.html</id>
+  </AlternateIds>
+  <Description>
+      The MS SQL Server Resolution Service allows a client to interrogate a server hosting a SQL Server installation and to receive back detailed information about the SQL Server instances available on the server.  The client sends a one-byte request to the server, and the server responds with a variable-length message containing instance names, versions, and other connection details.  
+
+      The response can be 22x the size of the request, and because the resolution service utilizes
+      UDP, this can be used to conduct traffic amplification attacks against
+      other assets, typically in the form of distributed reflected denial of
+      service (DRDoS) attacks.
+  </Description>
+  <Solutions>
+    <SolutionRef id="mcsqlr-restrict"/>
+  </Solutions>
+</Vulnerability>
