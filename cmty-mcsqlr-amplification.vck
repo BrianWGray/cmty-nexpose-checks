@@ -1,3 +1,3 @@
-<VulnerabilityCheck id="cmty-mcsqlr-amplification" scope="endpoint" potential="1">
+<VulnerabilityCheck id="cmty-mcsqlr-amplification" scope="endpoint">
   <NetworkService type="Microsoft SQL Monitor"/>
 </VulnerabilityCheck>
