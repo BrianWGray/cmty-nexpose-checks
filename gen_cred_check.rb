@@ -81,7 +81,7 @@ def xml_file_content(username, password, checkType, timeInfo)
   case @checkType.downcase
     when "ssh"
       xmlFileContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-      xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"1.0\">\n"
+      xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"2.0\">\n"
       xmlFileContent += "  <name>Default #{@checkType} account: #{@username} password \"<![CDATA[#{@password}]]>\"</name>\n"
       xmlFileContent += "  <severity>10</severity>\n"
       xmlFileContent += "  <cvss>(AV:N/AC:L/Au:N/C:C/I:C/A:C)</cvss>\n"
@@ -110,7 +110,7 @@ def xml_file_content(username, password, checkType, timeInfo)
 
     when "telnet"
       xmlFileContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-      xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"1.0\">\n"
+      xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"2.0\">\n"
       xmlFileContent += "  <name>Default #{@checkType.capitalize} account: #{@username} password \"<![CDATA[#{@password}]]>\"</name>\n"
       xmlFileContent += "  <severity>10</severity>\n"
       xmlFileContent += "  <cvss>(AV:N/AC:L/Au:N/C:C/I:C/A:C)</cvss>\n"
@@ -139,7 +139,7 @@ def xml_file_content(username, password, checkType, timeInfo)
 
     when "http"
       xmlFileContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-      xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"1.0\">\n"
+      xmlFileContent += "<Vulnerability id=\"cmty-#{@checkType.downcase}-default-account-#{@username}-password-#{@password}\" published=\"#{@timeInfo.strftime("%Y-%m-%d")}\" added=\"#{@timeInfo.strftime("%Y-%m-%d")}\" modified=\"#{@timeInfo.strftime("%Y-%m-%d")}\" version=\"2.0\">\n"
       xmlFileContent += "  <name>Default #{@checkType} account: #{@username} password \"<![CDATA[#{@password}]]>\"</name>\n"
       xmlFileContent += "  <severity>8</severity>\n"
       xmlFileContent += "  <cvss>(AV:N/AC:L/Au:S/C:P/I:C/A:P)</cvss>\n"
