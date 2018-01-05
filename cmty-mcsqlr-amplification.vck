@@ -1,3 +1,9 @@
-<VulnerabilityCheck id="cmty-mcsqlr-amplification" scope="endpoint">
+<VulnerabilityCheck id="cmty-mcsqlr-amplification" scope="endpoint" potential="0">
   <NetworkService type="Microsoft SQL Monitor"/>
+  <UDPCheck>
+    <UDPRequestResponse>
+      <UDPRequest><value format="base64">Ag==</value></UDPRequest>
+      <UDPResponse><regex ctags="REG_DOT_NEWLINE,REG_MULTILINE">;;</regex></UDPResponse>
+    </UDPRequestResponse>
+  </UDPCheck>
 </VulnerabilityCheck>
