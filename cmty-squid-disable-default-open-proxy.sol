@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Solution id="cmty-squid-disable-default-open-proxy" time="1h00m">
       <summary>Disable the squid default open HTTP proxy</summary>
-      <AppliesTo>
-        <Product name="squid"/>
-      </AppliesTo>
       <workaround>
         <p>
                An access control list (ACL) should be defined for the squid proxy server
