@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-memcached-amplification" published="2018-03-02" added="2018-03-02" modified="2018-03-02" version="2.0">
+  <name>Memcached Traffic Amplification</name>
+  <severity>1</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:N/I:N/A:P)</cvss>
+  <Tags>
+    <tag>Denial of Service</tag>
+  </Tags>
+  <AlternateIds>
+    <id name="URL">https://blogs.akamai.com/2018/02/memcached-udp-reflection-attacks.html</id>
+    <id name="URL">https://www.arbornetworks.com/blog/asert/memcached-reflection-amplification-description-ddos-attack-mitigation-recommendations/</id>
+    <id name="URL">https://www.us-cert.gov/ncas/alerts/TA14-017A</id>
+  </AlternateIds>
+  <Description>
+    Memcached is an in-memory database caching system used to improve the performance of database-driven Web sites and other Internet-facing services. Memcached should not be exposed to untrusted systems and networks. 
+
+      The response can be 10,000x to 51,000x the size of the request, and because the service utilizes UDP, this can be used to conduct traffic amplification attacks against other assets, typically in the form of distributed reflected denial of service (DRDoS) attacks.
+  </Description>
+  <Solutions>
+    <SolutionRef id="memcached-restrict"/>
+  </Solutions>
+</Vulnerability>

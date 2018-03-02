@@ -1,0 +1,9 @@
+<VulnerabilityCheck id="cmty-memcached-amplification" scope="endpoint" potential="0">
+  <NetworkService type="memcached"/>
+  <UDPCheck>
+    <UDPRequestResponse>
+      <UDPRequest><value format="base64">AAEAAAABAABzdGF0cw0KCg==</value></UDPRequest>
+      <UDPResponse><regex ctags="REG_DOT_NEWLINE,REG_MULTILINE">associations</regex></UDPResponse>
+    </UDPRequestResponse>
+  </UDPCheck>
+</VulnerabilityCheck>
