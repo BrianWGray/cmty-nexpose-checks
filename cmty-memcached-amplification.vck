@@ -3,7 +3,7 @@
   <UDPCheck>
     <UDPRequestResponse>
       <UDPRequest><value format="base64">AAEAAAABAABzdGF0cw0KCg==</value></UDPRequest>
-      <UDPResponse><regex ctags="REG_DOT_NEWLINE,REG_MULTILINE">associations</regex></UDPResponse>
+      <UDPResponse><regex ctags="REG_DOT_NEWLINE,REG_MULTILINE">STAT</regex></UDPResponse>
     </UDPRequestResponse>
   </UDPCheck>
 </VulnerabilityCheck>
