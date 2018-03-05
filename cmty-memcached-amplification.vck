@@ -2,7 +2,7 @@
   <NetworkService type="memcached"/>
     <UDPCheck>
   	    <UDPRequestResponse>
-  		    <UDPRequest><value format="base64">XHgwMFx4MDBceDAwXHgwMFx4MDBceDAxXHgwMFx4MDB2ZXJzaW9uXHJcbgo=</value></UDPRequest>
+                <UDPRequest><value format="base64">AAAAAAABAAB2ZXJzaW9uDQo=</value></UDPRequest>
 		    <UDPResponse><regex ctags="REG_DOT_NEWLINE,REG_MULTILINE">VERSION</regex></UDPResponse>
 	    </UDPRequestResponse>
     </UDPCheck>
