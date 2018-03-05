@@ -1,5 +1,5 @@
 <VulnerabilityCheck id="cmty-memcached-amplification" scope="endpoint" potential="0">
-<NetworkService type="memcached"/>
+    <NetworkService type="memcached"/>
     <JessRule>
         <query>
             <![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
