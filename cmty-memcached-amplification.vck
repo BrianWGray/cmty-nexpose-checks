@@ -1,18 +1,12 @@
 <VulnerabilityCheck id="cmty-memcached-amplification" scope="endpoint" potential="0">
+<NetworkService type="memcached"/>
     <JessRule>
         <query>
-        <![CDATA[
-            (ServiceAdvertisement
-            (name "memcached")
-            (endpoint ?j_endpoint &:
-                (eq (call ?j_endpoint getProtocol) (get-member com.rapid7.net.IPPacket IPPROTO_UDP))
-                )
-            )
-        ]]>
-    </query>
-    <body>
-      (vulnerability-test-exploited ?j_vulnCkRes "Running memcached over UDP")
-    </body>
+            <![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
+        </query>
+        <body>
+            (vulnerability-test-exploited ?j_vulnCkRes "Running memcached over UDP")
+        </body>
     </JessRule>
     <UDPCheck>
         <UDPRequestResponse>
