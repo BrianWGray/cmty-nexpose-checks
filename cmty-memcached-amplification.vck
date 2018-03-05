@@ -1,9 +1,14 @@
 <VulnerabilityCheck id="cmty-memcached-amplification" scope="endpoint" potential="0">
   <NetworkService type="memcached"/>
-  <UDPCheck>
-    <UDPRequestResponse>
-      <UDPRequest><value format="base64">AAEAAAABAABzdGF0cw0KCg==</value></UDPRequest>
-      <UDPResponse><regex ctags="REG_DOT_NEWLINE,REG_MULTILINE">STAT</regex></UDPResponse>
-    </UDPRequestResponse>
-  </UDPCheck>
+    <JessRule>
+        <body>
+        	<![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
+        </body>
+    </JessRule>
+    <UDPCheck>
+  	    <UDPRequestResponse>
+  		    <UDPRequest><value format="base64">XHgwMFx4MDBceDAwXHgwMFx4MDBceDAxXHgwMFx4MDB2ZXJzaW9uXHJcbgo=</value></UDPRequest>
+		    <UDPResponse><regex ctags="REG_DOT_NEWLINE,REG_MULTILINE">VERSION</regex></UDPResponse>
+	    </UDPRequestResponse>
+    </UDPCheck>
 </VulnerabilityCheck>
