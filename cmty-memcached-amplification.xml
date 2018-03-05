@@ -7,6 +7,7 @@
     <tag>Denial of Service</tag>
   </Tags>
   <AlternateIds>
+    <id name="URL">https://blog.cloudflare.com/memcrashed-major-amplification-attacks-from-port-11211/</id>
     <id name="URL">https://blogs.akamai.com/2018/02/memcached-udp-reflection-attacks.html</id>
     <id name="URL">https://www.arbornetworks.com/blog/asert/memcached-reflection-amplification-description-ddos-attack-mitigation-recommendations/</id>
     <id name="URL">https://www.us-cert.gov/ncas/alerts/TA14-017A</id>
@@ -14,7 +15,7 @@
   <Description>
     Memcached is an in-memory database caching system used to improve the performance of database-driven Web sites and other Internet-facing services. Memcached should not be exposed to untrusted systems and networks. 
 
-      The response can be 10,000x to 51,000x the size of the request, and because the service utilizes UDP, this can be used to conduct traffic amplification attacks against other assets, typically in the form of distributed reflected denial of service (DRDoS) attacks.
+      The response from a single UDP packet to the memcached service can be 10,000x to 51,000x the size of the originating request, and because the service utilizes UDP, this can be used to conduct traffic amplification attacks against other assets, typically in the form of distributed reflected denial of service (DrDoS) attacks.
   </Description>
   <Solutions>
     <SolutionRef id="memcached-restrict"/>
