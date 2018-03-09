@@ -4,6 +4,7 @@
   <xsd:simpleType name="xref_attribute">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="ADVICE"/>
+      <xsd:enumeration value="ALPINE"/>
       <xsd:enumeration value="AMAZON"/>
       <xsd:enumeration value="APPLE"/>
       <xsd:enumeration value="AUSCERT"/>
@@ -28,6 +29,7 @@
       <xsd:enumeration value="ELSA"/>
       <xsd:enumeration value="ENGARDE"/>
       <xsd:enumeration value="ERS"/>
+      <xsd:enumeration value="EULEROS"/>
       <xsd:enumeration value="FEDORA"/>
       <xsd:enumeration value="FREEBSD"/>
       <xsd:enumeration value="FRSIRT"/>
@@ -51,6 +53,7 @@
       <xsd:enumeration value="OVAL"/>
       <xsd:enumeration value="OWASP-2010"/>
       <xsd:enumeration value="OWASP-2013"/>
+      <xsd:enumeration value="PAN"/>
       <xsd:enumeration value="R7"/>
       <xsd:enumeration value="REDHAT"/>
       <xsd:enumeration value="SANS-00"/>

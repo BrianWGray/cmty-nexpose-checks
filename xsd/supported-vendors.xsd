@@ -73,6 +73,7 @@
          <xsd:enumeration value="Citrix"/>
          <xsd:enumeration value="Clearswift"/>
          <xsd:enumeration value="CNET"/>
+         <xsd:enumeration value="Gentoo"/>
          <xsd:enumeration value="CNT"/>
          <xsd:enumeration value="Cobalt"/>
          <xsd:enumeration value="Commodore"/>
@@ -100,8 +101,10 @@
          <xsd:enumeration value="Digital Link"/>
          <xsd:enumeration value="Digital Networks"/>
          <xsd:enumeration value="DigiTel"/>
+         <xsd:enumeration value="Docker Inc."/>
          <xsd:enumeration value="D-Link"/>
          <xsd:enumeration value="DrayTek"/>
+         <xsd:enumeration value="Drupal"/>
          <xsd:enumeration value="EasyTel"/>
          <xsd:enumeration value="Edimax"/>
          <xsd:enumeration value="Eicon"/>
@@ -122,10 +125,11 @@
          <xsd:enumeration value="FastComm"/>
          <xsd:enumeration value="FatWire"/>
          <xsd:enumeration value="FiberLine"/>
+         <xsd:enumeration value="FFmpeg"/>
          <xsd:enumeration value="Floosietek"/>
          <xsd:enumeration value="FlowPoint"/>
          <xsd:enumeration value="Fore"/>
-         <xsd:enumeration value="FortiNet"/>
+         <xsd:enumeration value="Fortinet"/>
          <xsd:enumeration value="Foundry"/>
          <xsd:enumeration value="FreeBSD"/>
          <xsd:enumeration value="FreeSCO"/>
@@ -184,6 +188,7 @@
          <xsd:enumeration value="Mandriva"/>
          <xsd:enumeration value="Maxim IC"/>
          <xsd:enumeration value="McAfee"/>
+         <xsd:enumeration value="MediaWiki"/>
          <xsd:enumeration value="Megabit"/>
          <xsd:enumeration value="Merak"/>
          <xsd:enumeration value="Meridian"/>
@@ -196,6 +201,7 @@
          <xsd:enumeration value="Minolta"/>
          <xsd:enumeration value="Mirapoint"/>
          <xsd:enumeration value="Mocana"/>
+         <xsd:enumeration value="Moodle"/>
          <xsd:enumeration value="Mort Bay"/>
          <xsd:enumeration value="Motorola"/>
          <xsd:enumeration value="Mozilla"/>
@@ -233,9 +239,11 @@
          <xsd:enumeration value="Oversee"/>
          <xsd:enumeration value="Packeteer"/>
          <xsd:enumeration value="Packet Engines"/>
+         <xsd:enumeration value="Palo Alto Networks"/>
          <xsd:enumeration value="Palm"/>
          <xsd:enumeration value="Panasonic"/>
          <xsd:enumeration value="Paul Smith Computer Services"/>
+         <xsd:enumeration value="pfSense"/>
          <xsd:enumeration value="PHP"/>
          <xsd:enumeration value="phpMyAdmin"/>
          <xsd:enumeration value="Pigtail"/>
@@ -258,6 +266,7 @@
          <xsd:enumeration value="Quantum"/>
          <xsd:enumeration value="Racal"/>
          <xsd:enumeration value="Radionics"/>
+         <xsd:enumeration value="Rapid7"/>
          <xsd:enumeration value="Raptor"/>
          <xsd:enumeration value="RCA"/>
          <xsd:enumeration value="RealMedia"/>
@@ -272,9 +281,11 @@
          <xsd:enumeration value="Rockwell"/>
          <xsd:enumeration value="Roxen"/>
          <xsd:enumeration value="rPath"/>
+         <xsd:enumeration value="Ruby on Rails"/>
          <xsd:enumeration value="SAP"/>
          <xsd:enumeration value="SAR"/>
          <xsd:enumeration value="Savin"/>
+         <xsd:enumeration value="Schneider Electric"/>
          <xsd:enumeration value="SCO"/>
          <xsd:enumeration value="Seattle Labs"/>
          <xsd:enumeration value="Secure Computing"/>
@@ -346,6 +357,7 @@
          <xsd:enumeration value="Xerox"/>
          <xsd:enumeration value="Xitami"/>
          <xsd:enumeration value="XMach"/>
+         <xsd:enumeration value="XnSoft"/>
          <xsd:enumeration value="Xylan"/>
          <xsd:enumeration value="Xylogics"/>
          <xsd:enumeration value="Xyplex"/>
