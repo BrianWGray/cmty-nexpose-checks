@@ -23,6 +23,7 @@
       <xsd:enumeration value="Monitoring"/>
       <xsd:enumeration value="Multifunction Device"/>
       <xsd:enumeration value="NAC"/>
+      <xsd:enumeration value="Network management device"/>
       <xsd:enumeration value="PBX"/>
       <xsd:enumeration value="PDA"/>
       <xsd:enumeration value="Point of sale"/>

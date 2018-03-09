@@ -42,7 +42,7 @@
       <xsd:enumeration value="ES"/>
       <xsd:enumeration value="ExtremeWare"/>
       <xsd:enumeration value="Firewall-1"/>
-      <xsd:enumeration value="Fortinet"/>
+      <xsd:enumeration value="FortiOS"/>
       <xsd:enumeration value="FreeBSD"/>
       <xsd:enumeration value="HI-UX"/>
       <xsd:enumeration value="HP-UX"/>

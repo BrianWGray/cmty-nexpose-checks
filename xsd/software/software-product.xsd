@@ -13,6 +13,7 @@
       <xsd:enumeration value="Exchange Server 2003"/>
       <xsd:enumeration value="Exchange Server 2007"/>
       <xsd:enumeration value="Firefox"/>
+      <xsd:enumeration value="FFmpeg"/>
       <xsd:enumeration value="Flash"/>
       <xsd:enumeration value="FrontPage"/>
       <xsd:enumeration value="InfoPath"/>
@@ -70,6 +71,7 @@
       <xsd:enumeration value="Wireshark"/>
       <xsd:enumeration value="Word"/>
       <xsd:enumeration value="Wordpress"/>
+      <xsd:enumeration value="XnView"/>
     </xsd:restriction>
   </xsd:simpleType>
 

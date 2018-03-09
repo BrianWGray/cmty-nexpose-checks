@@ -19,6 +19,7 @@
       <xsd:enumeration value="Productivity"/>
       <xsd:enumeration value="Security"/>
       <xsd:enumeration value="Utility"/>
+      <xsd:enumeration value="Wiki"/>
     </xsd:restriction>
   </xsd:simpleType>
 
