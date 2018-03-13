@@ -1,0 +1,11 @@
+<VulnerabilityCheck id="cmty-qotd-amplification" scope="endpoint">
+  <NetworkService type="Quote of the Day"/>
+      <JessRule>
+        <query>
+            <![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
+        </query>
+        <body>
+            (vulnerability-test-exploited ?j_vulnCkRes "Running Quote of the Day over UDP")
+        </body>
+    </JessRule>
+</VulnerabilityCheck>
