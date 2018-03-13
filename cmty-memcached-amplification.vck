@@ -5,7 +5,7 @@
             <![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
         </query>
         <body>
-            (vulnerability-test-exploited ?j_vulnCkRes "Running memcached over UDP")
+            <![CDATA[(vulnerability-test-exploited ?j_vulnCkRes "Running memcached over UDP")]]>
         </body>
     </JessRule>
     <UDPCheck>
