@@ -5,7 +5,7 @@
             <![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
         </query>
         <body>
-            <![CDATA[(vulnerability-test-exploited ?j_vulnCkRes "Running Quote of the Day over UDP")]]>
+            <![CDATA[(vulnerability-test-exploited ?j_vulnCkRes "Running Chargen over UDP")]]>
         </body>
     </JessRule>
 </VulnerabilityCheck>
