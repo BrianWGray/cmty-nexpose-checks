@@ -1,0 +1,11 @@
+<VulnerabilityCheck id="cmty-chargen-amplification" scope="endpoint">
+    <NetworkService type="Character Generator"/>
+    <JessRule>
+        <query>
+            <![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
+        </query>
+        <body>
+            <![CDATA[(vulnerability-test-exploited ?j_vulnCkRes "Running Quote of the Day over UDP")]]>
+        </body>
+    </JessRule>
+</VulnerabilityCheck>

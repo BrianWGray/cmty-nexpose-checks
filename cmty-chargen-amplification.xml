@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-chargen-amplification" published="2014-02-09" added="2014-12-10" modified="2018-03-13" version="2.0">
+  <name>Character Generator UDP Traffic Amplification</name>
+  <severity>1</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:N/I:N/A:N)</cvss>
+  <Tags>
+    <tag>Denial of Service</tag>
+  </Tags>
+  <AlternateIds>
+    <id name="CERT">TA14-017A</id>
+    <id name="URL">http://tools.ietf.org/html/rfc864</id>
+  </AlternateIds>
+  <Description>
+    <p>
+      A Character Generator (often just called chargen) is a service intended
+      for testing, debugging and measurement purposes.  Both the TCP and UDP
+      variants simply send random characters upon receiving a connection from
+      the client.  When contacted over UDP, the responses can be 500x the size
+      of the corresponding request and can be used to conduct traffic
+      amplification attacks against other assets, typically in the form of
+      distributed reflected denial of service (DRDoS) attacks.
+    </p>
+  </Description>
+  <Solutions>
+    <SolutionRef id="chargen-restrict"/>
+  </Solutions>
+</Vulnerability>
