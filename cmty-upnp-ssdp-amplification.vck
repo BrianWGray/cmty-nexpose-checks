@@ -1,0 +1,11 @@
+<VulnerabilityCheck id="cmty-upnp-ssdp-amplification" scope="endpoint">
+  <NetworkService type="UPnP-HTTPU"/>
+      <JessRule>
+        <query>
+            <![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
+        </query>
+        <body>
+            <![CDATA[(vulnerability-test-exploited ?j_vulnCkRes "Running UPnP SSDP over UDP")]]>
+        </body>
+    </JessRule>
+</VulnerabilityCheck>

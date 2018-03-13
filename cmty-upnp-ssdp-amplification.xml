@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-upnp-ssdp-amplification" published="2014-02-09" added="2014-12-10" modified="2018-03-13" version="2.0">
+  <name>UPnP SSDP UDP Traffic Amplification</name>
+  <severity>1</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:N/I:N/A:N)</cvss>
+  <Tags>
+    <tag>Denial of Service</tag>
+    <tag>UPnP</tag>
+  </Tags>
+  <AlternateIds>
+    <id name="CERT">TA14-017A</id>
+  </AlternateIds>
+  <Description>
+    <p>
+      A UPnP SSDP M-SEARCH request can be used to search a network for UPNP
+      devices.  An M-SEARCH response is roughly 30x the size of the request and
+      can be distributed across multiple responses from multiple hosts, and
+      because it utilizes UDP, this can be used to conduct traffic
+      amplification attacks against other assets, typically in the form of
+      distributed reflected denial of service (DRDoS) attacks.
+    </p>
+  </Description>
+  <Solutions>
+    <SolutionRef id="upnp-restrict"/>
+  </Solutions>
+</Vulnerability>
