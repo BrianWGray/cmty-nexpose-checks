@@ -1,0 +1,11 @@
+<VulnerabilityCheck id="cmty-cldap-amplification" scope="endpoint">
+  <NetworkService type="LDAP"/>
+      <JessRule>
+        <query>
+            <![CDATA[(test (eq (call ?j_endpoint getProtocol) (get-member IPPacket IPPROTO_UDP)))]]>
+        </query>
+        <body>
+            <![CDATA[(vulnerability-test-exploited ?j_vulnCkRes "Running CLDAP over UDP")]]>
+        </body>
+    </JessRule>
+</VulnerabilityCheck>

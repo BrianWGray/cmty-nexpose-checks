@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-cldap-amplification" published="2016-10-25" added="2018-05-14" modified="2018-05-14" version="2.0">
+  <name>CLDAP UDP Traffic Amplification</name>
+  <severity>1</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:N/I:N/A:N)</cvss>
+  <Tags>
+    <tag>Denial of Service</tag>
+  </Tags>
+  <AlternateIds>
+    <id name="CERT">TA14-017A</id>
+    <id name="URL">https://tools.ietf.org/html/rfc1798</id>
+  </AlternateIds>
+  <Description>
+    <p>
+      CLDAP: connection-less lightweight directory access protocol is designed to provide access
+      to a Directory while not incurring the resource requirements of the
+      Directory Access Protocol (DAP). When contacted over UDP, the responses can be 50x the size of
+      the corresponding request and can be used to conduct traffic
+      amplification attacks against other assets, typically in the form of
+      distributed reflected denial of service (DRDoS) attacks.  </p>
+  </Description>
+  <Solutions>
+    <SolutionRef id="cmty-cldap-restrict"/>
+  </Solutions>
+</Vulnerability>
