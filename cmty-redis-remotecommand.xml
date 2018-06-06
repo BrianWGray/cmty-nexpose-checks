@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-redis-remotecommand" published="2018-05-06" added="2018-05-06" modified="2018-05-06" version="2.0">
+  <name>Exposed Redis service command execution</name>
+  <severity>10</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:C/I:C/A:P)</cvss>
+  <cvss3>CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:L</cvss3>
+  <Tags>
+    <tag>Remote Execution</tag>
+  </Tags>
+  <AlternateIds>
+    <id name="URL">https://isc.sans.edu/forums/diary/Anatomy+of+a+Redis+mining+worm/23673/</id>
+    <id name="URL">https://packetstormsecurity.com/files/134200/Redis-Remote-Command-Execution.html</id>
+  </AlternateIds>
+  <Description>
+    <p>
+      Redis is an in-memory data structure store, used as a database, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs and geospatial indexes with radius queries. Accessible Redis servers may be exploited by worms and malicious actors to gain remote access to systems, data, and make use of computing resources to run crypto-miners.</p>
+  </Description>
+  <Solutions>
+    <SolutionRef id="cmty-redis-restrict"/>
+  </Solutions>
+</Vulnerability>

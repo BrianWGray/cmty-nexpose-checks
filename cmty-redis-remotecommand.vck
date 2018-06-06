@@ -1,0 +1,9 @@
+<VulnerabilityCheck id="cmty-redis-remotecommand" scope="endpoint" potential="0">
+    <NetworkService type="redis"/>
+    <TCPCheck>
+        <TCPRequestResponse>
+            <TCPRequest><value format="base64">KjENCiQ0DQpJTkZPDQoK</value></TCPRequest>
+            <TCPResponse><regex ctags="REG_DOT_NEWLINE,REG_MULTILINE">redis_version</regex></TCPResponse>
+        </TCPRequestResponse>
+    </TCPCheck>
+</VulnerabilityCheck>
