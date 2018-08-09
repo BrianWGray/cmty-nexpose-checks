@@ -1,0 +1,12 @@
+<VulnerabilityCheck id="cmty-http-solrAdminApp" scope="endpoint">
+    <NetworkService type="HTTP|HTTPS">
+    </NetworkService>
+    <HTTPCheck>
+        <HTTPRequest method="GET">
+            <URI>/solr/#/~logging</URI>
+        </HTTPRequest>
+        <HTTPResponse code="200">
+            <regex>solrAdminApp</regex>
+        </HTTPResponse>   
+    </HTTPCheck>
+</VulnerabilityCheck>
