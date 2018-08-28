@@ -18,7 +18,7 @@ monitoring circuit loading, and identifying power quality problems.
 Meters running firmware 12.x.x.x or below version 13.3.x.x and below ship with 
 a public/private key pair on Power Xpert Meter hardware that allows 
 passwordless authentication to any other affected Power Xpert Meter. 
-The vendor recomends updating to Version 13.4.0.10 or above. As the key is 
+The vendor recommends updating to Version 13.4.0.10 or above. As the key is 
 easily retrievable, an attacker can use it to gain unauthorized remote 
 access as uid0 </p>
   </Description>
