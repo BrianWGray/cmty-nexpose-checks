@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<VulnerabilityCheck id="cmty-ssh-eaton-privkey" scope="endpoint" framework="55">
+  <JessRule>
+    <query><![CDATA[
+      (ServiceAdvertisement (endpoint ?j_endpoint) (name "SSH"))
+      (ServiceAuthenticator (name "SSH") (authenticator ?j_authenticator))
+      ; TODO: use this on the RHS to not re-assert the same user but with different credentials
+      ;(ServiceUser (endpoint ?j_endpoint) (user ?j_user) (source ?j_source))
+    ]]></query>
+    <body><![CDATA[
+      (try
+        (bind ?keyString "-----BEGIN RSA PRIVATE KEY-----
+MIICWwIBAAKBgQCfwugh3Y3mLbxw0q4RZZ5rfK3Qj8t1P81E6sXjhZl7C3FyH4Mj
+C15CEzWovoQpRKrPdDaB5fVyuk6w2fKHrvHLmU2jTzq79B7A4JJEBQatAJeoVDgl
+TyfL+q6BYAtAeNsho8eP/fMwrT2vhylNJ4BTsJbmdDJMoaaHu/0IB9Z9ywIBIwKB
+gQCEX6plM+qaJeVHif3xKFAP6vZq+s0mopQjKO0bmpUczveZEsu983n8O81f7lA/
+c2j1CITvSYI6fRyhKZ0RVnCRcaQ8h/grzZNdyyD3FcqDNKO7Xf+bvYySrQXhLeQP
+I3jXGQPfBZUicGPcJclA98SBdBI1SReAUls1ZdzDwA3T8wJBAM6j1N3tYhdqal2W
+gA1/WSQrFxTt28mFeUC8enGvKLRm1Nnxk/np9qy2L58BvZzCGyHAsZyVZ7Sqtfb3
+YzqKMzUCQQDF7GrnrxNXWsIAli/UZscqIovN2ABRa2y8/JYPQAV/KRQ44vet2aaB
+trQBK9czk0QLlBfXrKsofBW81+Swiwz/AkEAh8q/FX68zY8Ssod4uGmg+oK3ZYZd
+O0kVKop8WVXY65QIN3LdlZm/W42qQ+szdaQgdUQc8d6F+mGNhQj4EIaz7wJAYCJf
+z54t9zq2AEjyqP64gi4JY/szWr8mL+hmJKoRTGRo6G49yXhYMGAOSbY1U5CsBZ+z
+zyf7XM6ONycIrYVeFQJABB8eqx/R/6Zwi8mVKMAF8lZXZB2dB+UOU12OGgvAHCKh
+7izYQtGEgPDbklbvEZ31F7H2o337V6FkXQMFyQQdHA==
+-----END RSA PRIVATE KEY-----")
+
+        (bind ?j_key (call com.rapid7.net.ssh.SSHUtils readPEMKeyPair
+          (new java.io.StringReader ?keyString)))
+        (bind ?j_credentials (new com.rapid7.net.ssh.SSHPublicKeyCredentials "admin" ?j_key))
+        (bind ?j_returnedCredentials (call ?j_authenticator authenticateCredentials ?j_endpoint ?j_credentials))
+        (bind ?proofFragment "authenticated with known private key for admin")
+        (if (neq ?j_returnedCredentials nil) then
+          (definstance SSHPublicKeyCredentials ?j_credentials static)
+          (assert (ServiceCredentials
+            (endpoint ?j_endpoint)
+            (name "SSH")
+            (credentials ?j_credentials)
+            (source "cmty-ssh-eaton-privkey")
+          ))
+
+          (vulnerability-test-exploited ?j_vulnCkRes (str-cat "Successfully " ?proofFragment))
+        else
+          (vulnerability-test-not-vulnerable ?j_vulnCkRes (str-cat "Unsuccessfully " ?proofFragment))
+        )
+      catch
+        (vulnerability-test-failed ?j_vulnCkRes ?ERROR)
+      )
+    ]]></body>
+  </JessRule>
+</VulnerabilityCheck>

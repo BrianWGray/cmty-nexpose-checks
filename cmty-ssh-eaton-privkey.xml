@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Vulnerability id="cmty-ssh-eaton-privkey" published="2018-07-18" added="2018-07-18" modified="2018-08-28" version="2.0">
+  <name>Eaton power management SSH authentication bypass Vulnerability</name>
+  <severity>8</severity>
+  <cvss>(AV:N/AC:L/Au:N/C:C/I:N/A:N)</cvss>
+  <Tags>
+    <tag>SSH</tag>
+  </Tags>
+  <AlternateIds>
+    <id name="URL">https://www.ctrlu.net/vuln/0006.html</id>
+    <id name="URL">https://github.com/BrianWGray/msf/blob/master/auxiliary/scanner/ssh/eaton_xpert_backdoor.rb</id>
+    <id name="URL">https://github.com/BrianWGray/msf/blob/master/exploits/linux/ssh/eaton_known_privkey.rb</id>
+    <id name="URL">http://www.eaton.com/content/dam/eaton/company/news-insights/cybersecurity/security-bulletins/PXM-Advisory.pdf</id>
+  </AlternateIds>
+  <Description>
+    <p>Eaton Power Xpert Meters are used across industries for energy management, 
+monitoring circuit loading, and identifying power quality problems. 
+Meters running firmware 12.x.x.x or below version 13.3.x.x and below ship with 
+a public/private key pair on Power Xpert Meter hardware that allows 
+passwordless authentication to any other affected Power Xpert Meter. 
+The vendor recomends updating to Version 13.4.0.10 or above. As the key is 
+easily retrievable, an attacker can use it to gain unauthorized remote 
+access as uid0 </p>
+  </Description>
+  <Solutions>
+    <SolutionRef id="cmty-ssh-eaton-privkey-workaround"/>
+  </Solutions>
+</Vulnerability>
