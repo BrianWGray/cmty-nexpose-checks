@@ -23,5 +23,6 @@
   </Description>
   <Solutions>
     <SolutionRef id="chargen-restrict"/>
+    <SolutionRef id="cmty-disable-simpletcpservices"/>
   </Solutions>
 </Vulnerability>
