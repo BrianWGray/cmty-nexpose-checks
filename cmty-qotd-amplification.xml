@@ -20,5 +20,6 @@
   </Description>
   <Solutions>
     <SolutionRef id="qotd-restrict"/>
+    <SolutionRef id="cmty-disable-simpletcpservices"/>
   </Solutions>
 </Vulnerability>
