@@ -1,5 +1,8 @@
 <Solution id="cmty-x11-putty-access" time="30m">
   <summary>Forwarding X11 through SSH via PuTTy</summary>
+  <AppliesTo>
+    <OS family="Windows"/>
+  </AppliesTo>
   <workaround>
     <p>
       PuTTy:
