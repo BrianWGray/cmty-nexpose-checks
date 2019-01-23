@@ -1,5 +1,8 @@
 <Solution id="cmty-x11-xwin32-access" time="30m">
   <summary>X-Win32 Solution for restricting access to localhost</summary>
+  <AppliesTo>
+    <OS family="Windows"/>
+  </AppliesTo>
   <workaround>
     <p>
       Configure X-Win32 to only allow connections from your local computer:
